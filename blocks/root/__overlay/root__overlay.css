@@ -1,0 +1,10 @@
+.root__overlay {
+  z-index: -2;
+
+  margin: auto;
+  border: dashed blanchedalmond;
+  width: 1280px;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.8;
+}

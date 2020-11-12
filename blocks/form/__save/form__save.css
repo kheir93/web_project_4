@@ -1,0 +1,11 @@
+.form__save {
+  margin: auto;
+  background-color: #000;
+  border-radius: 2px;
+  width: 358px;
+  height: 50px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+.info__add-button {
+  border: 2px solid #fff;
+  width: 150px;
+  height: 50px;
+  margin: auto 0 auto auto;
+  background-color: #000;
+  background-image: url(../../../images/addbutton.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

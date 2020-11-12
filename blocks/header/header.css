@@ -1,0 +1,16 @@
+
+.header {
+  border-bottom: 1px solid #545454;
+  position: relative;
+  display: block;
+  margin: 0 auto 41px;
+  max-width: 880px;
+  height: 74px;
+}
+
+@media (max-width : 320px) {
+  .header {
+    width: 100%;
+    height: 56px;
+  }
+}

@@ -1,16 +1,8 @@
-# Project 4: Around The U.S.
+<h1># Project 4: Around The U.S. #</h1>
 
-### Overview
-
-* Figma
-* Images
-
-**Figma**
-
-* [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+<h2>Sprint 4</h2>
+<ul>
+<li>Responsive Web Site</li>
+<li>Java Script implementation</li>
+<li>Publication on GitHub <a href="https://kheir93.github.io/web_project_4/">Project_4</li>
+</ul>

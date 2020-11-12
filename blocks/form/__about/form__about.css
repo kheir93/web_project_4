@@ -1,0 +1,12 @@
+.form__about {
+  text-align: start;
+  width: 350px;
+  height: auto;
+  margin: auto;
+  border: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #545454;
+  font-size: 14px;
+  line-height: 17px;
+  opacity: 0.8;
+}
