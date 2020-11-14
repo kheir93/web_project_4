@@ -2,9 +2,7 @@
 @import url(./__about/info__about.css);
 @import url(./__edit-button/info__edit-button.css);
 @import url(./__add-button/info__add-button.css);
-@import url(./__close-button/info__close-button.css);
-@import url(./__edit-button/_action/info__edit-button_action_open.css);
-@import url(./__edit-button/_action/info__edit-button_action_close.css);
+
 
 .info {
   display: grid;
@@ -18,9 +16,10 @@
 
 @media screen and (max-width: 320px) {
   .info {
-    width: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 85% 1fr;
+    grid-template-rows: auto , 2fr;
+    grid-gap: 14px;
   }
 }

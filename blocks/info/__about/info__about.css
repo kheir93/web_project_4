@@ -5,3 +5,9 @@
   font-size: 18px;
   line-height: 22px;
 }
+
+@media screen and (max-width: 320px) {
+  .info__about {
+    text-align: center;
+  }
+}

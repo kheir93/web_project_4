@@ -1,6 +1,6 @@
-@import url(./__overlay/root__overlay.css);
 
 .root {
+  position: relative;
   display: block;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -16,21 +16,20 @@
   width: auto;
   height: auto;
   padding-top: 45px;
-  overflow: hidden;
+
 }
-
-
-
 
 @media screen and (max-width: 1024px) {
   .root {
     width: 1024px;
+
   }
 }
 
 @media screen and (max-width: 768px) {
   .root {
     width: 768px;
+
   }
 }
 

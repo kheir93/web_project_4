@@ -4,8 +4,19 @@
 
 .card {
   z-index: 1;
+  position: relative;
   background-color: #fff;
   border-radius: 10px;
   width: 282px;
   height: 361px;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .cards {
+    width: 90%;
+    height: 361px;
+    margin: auto;
+
+  }
 }

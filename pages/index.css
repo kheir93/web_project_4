@@ -1,6 +1,7 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/inter.css);
 @import url(../blocks/root/root.css);
+@import url(../blocks/root/__overlay/root__overlay.css);
 @import url(../blocks/main/main.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/logo.css);
@@ -10,3 +11,6 @@
 @import url(../blocks/card/card.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/form/form.css);
+@import url(../blocks/form/__name/form__name.css);
+@import url(../blocks/form//__about/form__about.css);
+@import url(../blocks/form/_action/form_action_popup.css);

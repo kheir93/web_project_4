@@ -1,12 +1,18 @@
 .form__about {
-  text-align: start;
-  width: 350px;
+  width: 85%;
   height: auto;
   margin: auto;
   border: 0;
   box-sizing: border-box;
+  background: transparent;
   border-bottom: 1px solid #545454;
+  font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  opacity: 0.8;
+  padding-bottom: 14px;
 }
+
+.form__about:focus {
+  outline: 0;
+}
+

@@ -1,7 +1,28 @@
+@import url(./__copyright/footer__copyright.css);
+
 .footer {
-  margin: 67px auto 60px auto;
-  font-size: 18px;
-  line-height: 22px;
-  width: 880px;
-  color: #545454;
+  padding-bottom: 60px;
+  margin: 67px auto 0;
+  max-width: 880px;
+  width: 70%;
+
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: auto;
+  }
+}
+
+
+
+@media screen and (max-width: 320px) {
+  .footer {
+    width: 90%;
+    margin-top: 48px;
+    padding-bottom: 36px;
+    font-size: 14px;
+    line-height: 17px;
+
+  }
 }

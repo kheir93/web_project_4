@@ -13,6 +13,16 @@
   background-position: center;
 }
 
+.info__edit-button:hover {
+  opacity: 0.6;
+}
+
 /*.info__edit-button:active + .form {
   display: flex;
 }*/
+
+@media screen and (max-width: 320px) {
+  .info__edit-button {
+    margin: 0;
+  }
+}

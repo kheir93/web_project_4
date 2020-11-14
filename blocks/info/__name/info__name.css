@@ -1,10 +1,18 @@
 .info__name {
   margin: 0;
-  display:inline;
-  width: fit-content;
+  display: inline;
+
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
   height: auto;
 /* or 114% */
+  }
+
+@media screen and (max-width: 320px) {
+  .info__name {
+    text-align: center;
+    font-size: 22px;
+    line-height: 27px;
+  }
 }

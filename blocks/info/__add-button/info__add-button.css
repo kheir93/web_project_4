@@ -1,5 +1,7 @@
 .info__add-button {
   border: 2px solid #fff;
+  box-sizing: border-box;
+  border-radius: 2px;
   width: 150px;
   height: 50px;
   margin: auto 0 auto auto;
@@ -7,4 +9,16 @@
   background-image: url(../../../images/addbutton.svg);
   background-repeat: no-repeat;
   background-position: center;
+
+}
+
+.info__add-button:hover {
+  opacity: 0.4;
+}
+
+@media screen and (max-width: 320px) {
+  .info__add-button {
+    width: 90%;
+    margin: 36px auto 0;
+  }
 }
