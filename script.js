@@ -14,26 +14,20 @@ function popup() {
 
 editopen.addEventListener("click", popup);
 
-function handleFormSubmit(event) {
-  event.preventDefault();
-};
 
-function handleFormSubmit() {
+document.querySelector(".form").addEventListener('submit', function handleFormSubmit(evt) {
+  evt.preventDefault();
 
-  let nameInput = document.querySelector(".form__name")
-  let jobInput = document.querySelector(".form__about")
+  let inputName = document.querySelector(".form__name");
+  let inputJob = document.querySelector(".form__about");
 
-  nameInput.value = "Jacques Cousteau" + "";
-  jobInput.value = "Explorer" + "";
+  let name = inputName.value;
+  infoName.textContent = name;
 
-    var name = nameInput.value;
-    infoName.textContent = name;
-    var job = jobInput.value;
-    infoAbout.textContent = job;
-  };
+  let job = inputJob.value;
+  infoAbout.textContent = job;
+  form.classList.remove("form_action_popup");
+  root.classList.remove("root__overlay");
+  });
 
-
-console.log(handleFormSubmit);
-form.addEventListener('submit', handleFormSubmit());
-console.log(addEventListener);
 
