@@ -4,7 +4,8 @@ let profile = document.querySelector(".profile");
 let editopen = document.querySelector(".info__edit-button");
 let form = document.querySelector(".form");
 let save = document.querySelector(".form__save");
-
+let infoName = document.querySelector(".info__name");
+let infoAbout = document.querySelector(".info__about");
 
 function popup() {
   form.classList.add("form_action_popup");
@@ -13,20 +14,26 @@ function popup() {
 
 editopen.addEventListener("click", popup);
 
-
-
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-
-  let nameInput = document.querySelector('.form__name[value="Jacques Cousteau"}');
-  let jobInput = document.querySelector(".form__about");
-  let infoName = document.querySelector(".info__name");
-  let infoabout = document.querySelector(".info__about");
-
-  nameInput.textContent(infoName);
-  jobInput.textContent(infoabout);
-
+function handleFormSubmit(event) {
+  event.preventDefault();
 };
 
-console.log(handleFormSubmit)
-save.addEventListener('submit', handleFormSubmit);
+function handleFormSubmit() {
+
+  let nameInput = document.querySelector(".form__name")
+  let jobInput = document.querySelector(".form__about")
+
+  nameInput.value = "Jacques Cousteau" + "";
+  jobInput.value = "Explorer" + "";
+
+    var name = nameInput.value;
+    infoName.textContent = name;
+    var job = jobInput.value;
+    infoAbout.textContent = job;
+  };
+
+
+console.log(handleFormSubmit);
+form.addEventListener('submit', handleFormSubmit());
+console.log(addEventListener);
+

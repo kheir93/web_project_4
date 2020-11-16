@@ -19,10 +19,10 @@
       <section for="popup" class="profile">
         <img class="profile__avatar " src="images/JYCousteau.jpg" alt="Comander Cousteau">
         <div class="info">
-        <p class="info__name">Jacques Cousteau</p>
+        <p class="info__name" id="infoName"></p>
           <button class="info__edit-button">
           </button>
-          <p class="info__about">Explorer</p>
+          <p class="info__about" id="infoAbout"></p>
         </div>
         <button class="info__add-button" type="button">
 
@@ -74,12 +74,12 @@
           </figure>
         </li>
       </ul>
-      <form class="form">
+      <form class="form" onsubmit="handleFormSubmit()">
         <button class="form__close"></button>
         <h1 class="form__title">Profile</h1>
-        <input type="text" for="" class="form__name" placeholder="name" value="">
-        <input type="text" for="" class="form__about" placeholder="about me" value="Explorer">
-        <button class="form__save">Save</button>
+        <input type="text" for="" class="form__name" id="inputName" placeholder="name">
+        <input type="text" for="" class="form__about" id="inputJob" placeholder="about me">
+        <button class="form__save" type="submit">Save</button>
       </form>
       <script src="script.js"></script>
     </main>

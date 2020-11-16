@@ -11,6 +11,4 @@
 @import url(../blocks/card/card.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__name/form__name.css);
-@import url(../blocks/form//__about/form__about.css);
 @import url(../blocks/form/_action/form_action_popup.css);
