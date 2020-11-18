@@ -1,0 +1,31 @@
+.profile__edit-button {
+  border: 1px solid #fff;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  margin-left: 45px;
+  margin-top: 35px;
+  margin-bottom: 0;
+  background-image: url(../../../images/call_popup.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  grid-area: edit;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+
+/*.info__edit-button:active + .form {
+  display: flex;
+}*/
+
+@media screen and (max-width: 320px) {
+  .profile__edit-button {
+    text-align: center;
+    margin:0 0 0 auto;
+    width: 18px;
+    height: 18px;
+  }
+}

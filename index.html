@@ -10,82 +10,71 @@
   <link rel=stylesheet href="pages/index.css">
   <title>Around The U.S.</title>
 </head>
+
 <body>
   <div class="root">
     <header class="header">
       <img class="logo" src="images/logo.svg" alt="logo">
     </header>
     <main class="main">
-      <section for="popup" class="profile">
+      <section class="profile">
         <img class="profile__avatar " src="images/JYCousteau.jpg" alt="Comander Cousteau">
-        <div class="info">
-        <p class="info__name" id="infoName"></p>
-          <button class="info__edit-button">
-          </button>
-          <p class="info__about" id="infoAbout"></p>
-        </div>
-        <button class="info__add-button" type="button">
-
+          <p class="profile__name" id="infoName">Jacques Cousteau</p>
+          <button class="profile__edit-button" type="edit"></button>
+          <p class="profile__about" id="infoAbout">Explorer</p>
+          <button class="profile__add-button" type="add"></button>
         </button>
       </section>
-
-      <ul class="elements">
-        <li class="card">
-          <figure>
-            <img  class="card__image" src="images/Yosemite_Valley.png" alt="yosemite">
+      <section>
+        <ul class="elements">
+          <li class="card">
+            <img class="card__image" src="images/Yosemite_Valley.jpg" alt="yosemite">
             <figcaption class="card__caption">Yosemite Valley</figcaption>
-            <button class="card__like"></button>
-          </figure>
-
-        </li>
-        <li class="card">
-          <figure>
-            <img  class="card__image" src="images/Lake_Louise.png" alt="lake">
+            <button class="card__like" type="like"></button>
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/Lake_Louise.jpg" alt="lake">
             <figcaption class="card__caption">Lake Louise</figcaption>
             <button class="card__like"></button>
-          </figure>
-        </li>
-        <li class="card">
-          <figure>
-            <img  class="card__image" src="images/Bald_Mountains.png" alt="mountains">
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/Bald_Mountains.jpg" alt="mountains">
             <figcaption class="card__caption">Bald Mountains</figcaption>
             <button class="card__like"></button>
-          </figure>
-        </li>
-        <li class="card">
-          <figure>
-            <img  class="card__image" src="images/Latemar.png" alt="latemar">
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/Latemar.jpg" alt="latemar">
             <figcaption class="card__caption">Latemar</figcaption>
             <button class="card__like"></button>
-          </figure>
-        </li>
-        <li class="card">
-          <figure>
-            <img  class="card__image" src="images/Vanoise_Park.png" alt="vanoise">
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/Vanoise_Park.jpg" alt="vanoise">
             <figcaption class="card__caption">Vanoise National Park</figcaption>
             <button class="card__like"></button>
-          </figure>
-        </li>
-        <li class="card">
-          <figure>
-            <img  class="card__image" src="images/Lago_diBraies.png" alt="lago">
+          </li>
+          <li class="card">
+            <img class="card__image" src="images/Lago_diBraies.jpg" alt="lago">
             <figcaption class="card__caption">Lago di Braies</figcaption>
             <button class="card__like"></button>
-          </figure>
-        </li>
-      </ul>
-      <form class="form">
-        <button class="form__close"></button>
-        <h1 class="form__title">Profile</h1>
-        <input type="text" for="" class="form__name" id="inputName" placeholder="name" value="Jacques Cousteau">
-        <input type="text" for="" class="form__about" id="inputJob" placeholder="about me" value="Explorer">
-        <button class="form__save" type="submit">Save</button>
-      </form>
-      <script src="script.js"></script>
+          </li>
+        </ul>
+      </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020, Around The U.S.</p>
     </footer>
+    <div class="popup">
+      <form class="popup__form">
+        <button class="popup__form-close" type="close"></button>
+        <!--Theres no other h1-->
+        <h1 class="popup__form-title">Edit profile</h1>
+        <input type="text" class="popup__form-input" id="inputName" placeholder="name" value="Jacques Cousteau">
+        <input type="text" class="popup__form-input" id="inputJob" placeholder="about me" value="Explorer">
+        <button class="popup__form-save" type="save" >Save</button>
+      </form>
+    </div>
   </div>
+  <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,16 +1,15 @@
 .card__like {
-  position: absolute;
-  bottom: 7%;
-  right: 10%;
-  margin-top: 0;
-  display: inline;
-  margin-right: 0;
-  z-index: 3;
+
+  margin-top: 30px;
   width: 21px;
   height: 20px;
   background-image: url(../../../images/like.svg);
   background-repeat: no-repeat;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+}
 
+.card__like:hover {
+  opacity: 0.4;
 }

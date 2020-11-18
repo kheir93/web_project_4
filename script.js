@@ -1,33 +1,43 @@
 let root = document.querySelector(".root");
-let info = document.querySelector(".info");
 let profile = document.querySelector(".profile");
-let editopen = document.querySelector(".info__edit-button");
-let form = document.querySelector(".form");
-let save = document.querySelector(".form__save");
-let infoName = document.querySelector(".info__name");
-let infoAbout = document.querySelector(".info__about");
+let editOpen = document.querySelector(".profile__edit-button");
+let open = document.querySelector(".popup");
+let save = document.querySelector(".popup__form-save");
+let infoName = document.querySelector(".profile__name");
+let infoAbout = document.querySelector(".profile__about");
 
 function popup() {
-  form.classList.add("form_action_popup");
-  root.classList.add("root__overlay");
+  open.classList.add("popup_action_open");
+  //root.classList.add("root__overlay");
 };
 
-editopen.addEventListener("click", popup);
+editOpen.addEventListener("click", popup);
 
+let inputName = document.querySelector("#inputName");
+let inputJob = document.querySelector("#inputJob");
 
-document.querySelector(".form").addEventListener('submit', function handleFormSubmit(evt) {
-  evt.preventDefault();
+let popupForm = document.querySelector(".popup__form");
+let popupClose = document.querySelector(".popup__form-close");
 
-  let inputName = document.querySelector(".form__name");
-  let inputJob = document.querySelector(".form__about");
+function handleFormSubmit(evt) {
+  let popupClose = document.querySelector(".popup__form-close");
+evt.preventDefault();
 
-  let name = inputName.value;
+  name = inputName.value;
   infoName.textContent = name;
 
-  let job = inputJob.value;
+  job = inputJob.value;
   infoAbout.textContent = job;
-  form.classList.remove("form_action_popup");
-  root.classList.remove("root__overlay");
-  });
+  open.classList.remove("popup_action_open");
+};
+
+function discard(evt) {
+  evt.preventDefault();
+  open.classList.remove("popup_action_open");
+};
 
 
+  console.log(handleFormSubmit);
+  console.log(discard);
+  popupForm.addEventListener("submit", handleFormSubmit);
+  popupClose.addEventListener("click", discard);

@@ -2,7 +2,7 @@
   border-radius: 120px;
   width: 120px;
   object-fit: contain;
-  margin-right: 30px;
+  grid-area: avatar;
 }
 
 @media screen and (max-width: 320px) {

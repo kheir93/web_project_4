@@ -1,21 +1,36 @@
 @import url(./__avatar/profile__avatar.css);
-
+@import url(./__name/profile__name.css);
+@import url(./__about/profile__about.css);
+@import url(./__edit-button/profile__edit-button.css);
+@import url(./__add-button/profile__add-button.css);
 
 .profile {
-  z-index: 0;
-
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 120px 375px 24px 150px;
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+    "avatar name edit add"
+    "avatar about . ." ;
+  margin-top: auto;
+  margin-bottom: auto;
   width: 100%;
-  height: auto;
   margin-bottom: 51px;
 }
 
+
 @media screen and (max-width: 320px) {
   .profile {
+    padding: auto;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 90% auto;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+      "avatar avatar"
+      "name edit"
+      "about about"
+      "add add";
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 }
