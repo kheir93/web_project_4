@@ -1,11 +1,9 @@
 .card__caption {
   z-index: 0;
-  position: relative;
   display: block;
   text-align: start;
   width: 220px;
-  height: 30px;
-  margin: 25px 21px 0;
+  margin: 25px 0 0 auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

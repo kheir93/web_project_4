@@ -1,9 +1,11 @@
 .main {
-  position: relative;
   max-width: 880px;
-  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
-
+@media screen and (max-width: 320px) {
+  .main {
+    width: 320px;
+  }
+}
