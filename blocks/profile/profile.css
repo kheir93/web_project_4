@@ -21,8 +21,7 @@
   .profile {
     grid-template-areas:
     "avatar name edit ."
-    "avatar about add add" ;
-    padding: auto;
+    "avatar about add add";
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -31,10 +30,7 @@
 
 @media screen and (max-width: 320px) {
   .profile {
-    padding: auto;
     width: 90%;
-    margin-left: auto;
-    margin-right: auto;
     grid-template-columns: 90% auto;
     grid-template-rows: repeat(4, auto);
     grid-template-areas:

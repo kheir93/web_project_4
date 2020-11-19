@@ -19,43 +19,43 @@
     <main class="main">
       <section class="profile">
         <img class="profile__avatar " src="images/JYCousteau.jpg" alt="Comander Cousteau">
-          <p class="profile__name" id="infoName">Jacques Cousteau</p>
-          <button class="profile__edit-button" type="edit"></button>
+          <h1 class="profile__name" id="infoName">Jacques Cousteau</h1>
+          <button class="profile__edit-button" type="button"></button>
           <p class="profile__about" id="infoAbout">Explorer</p>
-          <button class="profile__add-button" type="add"></button>
+          <button class="profile__add-button" type="button"></button>
         </button>
       </section>
       <section>
         <ul class="elements">
           <li class="card">
             <img class="card__image" src="images/Yosemite_Valley.jpg" alt="yosemite">
-            <figcaption class="card__caption">Yosemite Valley</figcaption>
-            <button class="card__like" type="like"></button>
+            <h2 class="card__caption">Yosemite Valley</h2>
+            <button class="card__like" type="image"></button>
           </li>
           <li class="card">
             <img class="card__image" src="images/Lake_Louise.jpg" alt="lake">
-            <figcaption class="card__caption">Lake Louise</figcaption>
-            <button class="card__like"></button>
+            <h2 class="card__caption">Lake Louise</h2>
+            <button class="card__like" type="image"></button>
           </li>
           <li class="card">
             <img class="card__image" src="images/Bald_Mountains.jpg" alt="mountains">
-            <figcaption class="card__caption">Bald Mountains</figcaption>
-            <button class="card__like"></button>
+            <h2 class="card__caption">Bald Mountains</h2>
+            <button class="card__like" type="image"></button>
           </li>
           <li class="card">
             <img class="card__image" src="images/Latemar.jpg" alt="latemar">
-            <figcaption class="card__caption">Latemar</figcaption>
-            <button class="card__like"></button>
+            <h2 class="card__caption">Latemar</h2>
+            <button class="card__like" type="image"></button>
           </li>
           <li class="card">
             <img class="card__image" src="images/Vanoise_Park.jpg" alt="vanoise">
-            <figcaption class="card__caption">Vanoise National Park</figcaption>
-            <button class="card__like"></button>
+            <h2 class="card__caption">Vanoise National Park</h2>
+            <button class="card__like" type="image"></button>
           </li>
           <li class="card">
             <img class="card__image" src="images/Lago_diBraies.jpg" alt="lago">
-            <figcaption class="card__caption">Lago di Braies</figcaption>
-            <button class="card__like"></button>
+            <h2 class="card__caption">Lago di Braies</h2>
+            <button class="card__like" type="image"></button>
           </li>
         </ul>
       </section>
@@ -65,12 +65,14 @@
     </footer>
     <div class="popup">
       <form class="popup__form">
-        <button class="popup__form-close" type="close"></button>
-        <!--Theres no other h1-->
-        <h1 class="popup__form-title">Edit profile</h1>
-        <input type="text" class="popup__form-input" id="inputName" placeholder="name" value="Jacques Cousteau">
-        <input type="text" class="popup__form-input" id="inputJob" placeholder="about me" value="Explorer">
-        <button class="popup__form-save" type="save" >Save</button>
+        <button class="popup__form-close" type="submit"></button>
+        <!--Theres no other h1
+        "You're right, sorry, I've missed that. Anyway, this isn't the main heading of the page, the profile name really is h1. And in the form, it's necessary to use a lower level of heading. Please, correct."
+      Got it, my bad, I should have anyway set it up as well in a first place-->
+        <h2 class="popup__form-title">Edit profile</h2>
+        <input type="text" class="popup__form-input" id="inputName" oninput="handleFormSubmit" placeholder="name" value="Jacques Cousteau">
+        <input type="text" class="popup__form-input" id="inputJob" oninput="handleFormSubmit" placeholder="about me" value="Explorer">
+        <button class="popup__form-save" type="submit" >Save</button>
       </form>
     </div>
   </div>

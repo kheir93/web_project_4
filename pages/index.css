@@ -9,4 +9,4 @@
 @import url(../blocks/card/card.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_action/popup_action_open.css);
+@import url(../blocks/popup/__open/popup__open.css);

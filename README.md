@@ -1,6 +1,6 @@
-<h1># Project 4: Around The U.S. #</h1>
+<h1># Project 4: Around The U.S.</h1>
 
-<h2>Sprint 4</h2>
+<h2>## Sprint 4</h2>
 <ul>
 <li>Responsive Web Site</li>
 <li>Java Script implementation</li>

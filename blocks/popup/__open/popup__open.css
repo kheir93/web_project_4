@@ -1,4 +1,4 @@
-.popup_action_open {
+.popup__open {
   z-index: 3;
   display: flex;
 }
