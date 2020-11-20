@@ -6,7 +6,7 @@
 
 .profile {
   display: grid;
-  grid-template-columns: 120px 375px 24px 150px;
+  grid-template-columns: 15% 43% 1% 41%;
   grid-template-rows: repeat(2, auto);
   grid-template-areas:
     "avatar name edit add"
@@ -29,8 +29,7 @@
 }
 
 @media screen and (max-width: 320px) {
-  .profile {
-    width: 90%;
+    .profile {
     grid-template-columns: 90% auto;
     grid-template-rows: repeat(4, auto);
     grid-template-areas:
@@ -38,6 +37,5 @@
       "name edit"
       "about about"
       "add add";
-
   }
 }

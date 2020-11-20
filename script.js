@@ -11,11 +11,9 @@ let popupForm = document.querySelector(".popup__form");
 let popupClose = document.querySelector(".popup__form-close");
 
 function popup() {
-  open.classList.add("popup__open");
-  name = infoName.textContent;
-  inputName.value = name;
-  job = infoAbout.textContent;
-  inputJob.value = job;
+  open.classList.add("popup_open");
+  inputName.value = infoName.textContent;
+  inputJob.value = infoAbout.textContent;
 };
 
 openPopup.addEventListener("click", popup);
@@ -27,12 +25,11 @@ function handleFormSubmit(evt) {
 
   job = inputJob.value;
   infoAbout.textContent = job;
-  open.classList.remove("popup__open");
+  open.classList.remove("popup_open");
 };
 
-function discard(evt) {
-  evt.preventDefault();
-  open.classList.remove("popup__open");
+function discard() {
+  open.classList.remove("popup_open");
 };
 
 popupForm.addEventListener("submit", handleFormSubmit);
