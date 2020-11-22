@@ -1,7 +1,6 @@
 .profile__about {
   margin-top: 0;
   margin-left: 20px;
-  width: 375px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
