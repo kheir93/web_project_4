@@ -1,7 +1,7 @@
 .profile__about {
   margin-top: 0;
   margin-left: 20px;
-  max-width: 375px;
+  width: 375px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -10,6 +10,14 @@
   font-size: 18px;
   line-height: 22px;
   grid-area: about;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__about {
+    margin-left: 10px;
+    font-size: 24px;
+    line-height: 27px;
+  }
 }
 
 @media screen and (max-width: 320px) {

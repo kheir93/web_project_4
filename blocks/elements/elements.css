@@ -15,12 +15,16 @@
   }
 }
 
-
-
 @media screen and (max-width: 768px) {
   .elements {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
+  }
+}
 
+@media screen and (max-width: 320px) {
+  .elements {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
   }
 }

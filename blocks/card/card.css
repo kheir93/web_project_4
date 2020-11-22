@@ -9,13 +9,9 @@
   z-index: 1;
   background-color: #fff;
   border-radius: 10px;
-  width: 282px;
+  width: 280px;
   padding-bottom: 22px;
   margin: auto;
 }
 
-@media screen and (max-width: 768px) {
-  .cards {
-    width: 90%;
-  }
-}
+

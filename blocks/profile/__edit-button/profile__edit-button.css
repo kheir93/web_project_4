@@ -18,9 +18,11 @@
   opacity: 0.6;
 }
 
-/*.info__edit-button:active + .form {
-  display: flex;
-}*/
+@media screen and (max-width: 768px) {
+  .profile__edit-button {
+   margin-left: 0;
+  }
+}
 
 @media screen and (max-width: 320px) {
   .profile__edit-button {

@@ -2,7 +2,7 @@
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 0;
-  width: 375px;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -11,6 +11,14 @@
   line-height: 1.14;
   /* or 114% */
   grid-area: name;
+  }
+
+  @media screen and (max-width: 768px) {
+    .profile__name {
+      margin-left: 10px;
+      font-size: 32px;
+      line-height: 37px;
+    }
   }
 
 @media screen and (max-width: 320px) {
