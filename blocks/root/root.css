@@ -19,7 +19,7 @@
 
 @media screen and (max-width: 1280px) {
   .root {
-    width: 1280px;
+    max-width: 1280px;
   }
 }
 
