@@ -2,8 +2,8 @@
   z-index: 0;
   display: block;
   text-align: start;
-  width: 220px;
-  margin: 25px 0 0 auto;
+  width: 85%;
+  margin: 25px auto 0 auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

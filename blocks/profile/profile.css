@@ -11,34 +11,40 @@
   grid-template-areas:
     "avatar name edit add"
     "avatar about . ." ;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 100%;
+  margin: auto;
+  max-width: 880px;
   margin-bottom: 51px;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 1024px) {
   .profile {
+    width: 80%;
     grid-template-columns: repeat(4, auto);
     grid-template-areas:
     "avatar name name edit "
-    "avatar about add .";
-    grid-row-gap: 10px;
-    width: 90%;
+    "avatar about about add";
     margin-left: auto;
     margin-right: auto;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media (max-width: 768px) {
+  .profile {
+    grid-row-gap: 10px;
+  }
+}
+
+@media (max-width: 320px) {
     .profile {
-    grid-template-columns: 90% auto;
-    grid-template-rows: repeat(4, auto);
-    grid-template-areas:
-      "avatar avatar"
-      "name edit"
-      "about about"
-      "add add";
-    grid-row-gap: 0;
+      width: 93%;
+      margin: auto;
+      grid-template-columns: 90% auto;
+      grid-template-rows: repeat(4, auto);
+      grid-template-areas:
+        "avatar avatar"
+        "name edit"
+        "about about"
+        "add add";
+      grid-gap: 0;
   }
 }

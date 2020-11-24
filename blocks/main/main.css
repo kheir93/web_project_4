@@ -1,17 +1,25 @@
-.main {
+/*.main {
+  display: flex;
+  flex-direction: column;
   max-width: 880px;
   margin-left: auto;
   margin-right: auto;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 1024px) {
   .main {
-    width: 80%;
+    width: 716px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media (max-width: 768px) {
+  .main {
+    width: 537px;
+  }
+}
+
+@media (max-width: 320px) {
   .main {
     width: 320px;
   }
-}
+}*/

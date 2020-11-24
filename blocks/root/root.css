@@ -12,6 +12,11 @@
   font-weight: normal;
   color: white;
   width: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: auto;
+  margin-left: auto;
+  margin-right: auto;
   height: auto;
   padding-top: 45px;
 
@@ -19,24 +24,25 @@
 
 @media screen and (max-width: 1280px) {
   .root {
-    max-width: 1280px;
+    width: auto;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .root {
-    width: 1024px;
+    width: auto;
   }
 }
 
 @media screen and (max-width: 768px) {
   .root {
-    width: 768px;
+    width: auto;
   }
 }
 
 @media screen and (max-width: 320px) {
   .root {
-    width: 320px;
+    max-width: auto;
   }
 }
+
