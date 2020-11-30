@@ -1,4 +1,8 @@
-.popup__form-close {
+.zoom__close {
+  float: left;
+  position: absolute;
+  right: 0;
+  top: 0;
   background-image: url(../../../images/CloseIcon.svg);
   border: none;
   background-color: transparent;
@@ -6,30 +10,30 @@
   background-size: cover;
   width: 50px;
   height: 50px;
-  margin-top: -40px;
-  margin-left: 430px;
+
+
   padding: 0;
   overflow: visible;
   cursor: pointer;
 }
 
-.popup__form-close:active {
+.zoom__close:active {
   transform: rotate(45deg);
 }
 
-.popup__form-close:hover {
+.zoom__close:hover {
   opacity: 0.4;
 }
 
 @media screen and (max-width: 768px) {
-  .popup__form-close {
+  .zoom__close {
     margin-top: -40px;
     margin-left: 90%;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .popup__form-close {
+  .zoom__close {
     margin-top: -60px;
     margin-left: 85%;
   }

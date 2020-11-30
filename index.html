@@ -26,37 +26,45 @@
           <button class="profile__add-button" type="button"></button>
       </section>
       <section>
-        <ul class="elements">
-          <li class="card">
-            <img class="card__image" src="images/Yosemite_Valley.jpg" alt="yosemite">
-            <h2 class="card__caption">Yosemite Valley</h2>
-            <button class="card__like" type="button"></button>
+        <ul class="elements" id="elements">
+          <template id="cardTemplate">
+          <li class="card" id="card">
+            <button class="card__delete" id="card__delete" type="button"></button>
+            <img class="card__image" id="card__image">
+            <h2 class="card__caption" id="card__caption"></h2>
+            <button class="card__like" id="card__like" type="button"></button>
           </li>
-          <li class="card">
-            <img class="card__image" src="images/Lake_Louise.jpg" alt="lake">
-            <h2 class="card__caption">Lake Louise</h2>
-            <button class="card__like" type="button"></button>
+          <li class="card" id="card">
+            <button class="card__delete" id="card__delete" type="button"></button>
+            <img class="card__image" id="card__image">
+            <h2 class="card__caption" id="card__caption"></h2>
+            <button class="card__like" id="card__like" type="button"></button>
           </li>
-          <li class="card">
-            <img class="card__image" src="images/Bald_Mountains.jpg" alt="mountains">
-            <h2 class="card__caption">Bald Mountains</h2>
-            <button class="card__like" type="button"></button>
+          <li class="card" id="card">
+            <button class="card__delete" id="card__delete" type="button"></button>
+            <img class="card__image" id="card__image">
+            <h2 class="card__caption" id="card__caption"></h2>
+            <button class="card__like" id="card__like" type="button"></button>
           </li>
-          <li class="card">
-            <img class="card__image" src="images/Latemar.jpg" alt="latemar">
-            <h2 class="card__caption">Latemar</h2>
-            <button class="card__like" type="button"></button>
+          <li class="card" id="card">
+            <button class="card__delete" id="card__delete" type="button"></button>
+            <img class="card__image" id="card__image">
+            <h2 class="card__caption" id="card__caption"></h2>
+            <button class="card__like" id="card__like" type="button"></button>
           </li>
-          <li class="card">
-            <img class="card__image" src="images/Vanoise_Park.jpg" alt="vanoise">
-            <h2 class="card__caption">Vanoise National Park</h2>
-            <button class="card__like" type="button"></button>
+          <li class="card" id="card">
+            <button class="card__delete" id="card__delete" type="button"></button>
+            <img class="card__image" id="card__image">
+            <h2 class="card__caption" id="card__caption"></h2>
+            <button class="card__like" id="card__like" type="button"></button>
           </li>
-          <li class="card">
-            <img class="card__image" src="images/Lago_diBraies.jpg" alt="lago">
-            <h2 class="card__caption">Lago di Braies</h2>
-            <button class="card__like" type="button"></button>
+          <li class="card" id="card">
+            <button class="card__delete" id="card__delete" type="button"></button>
+            <img class="card__image" id="card__image">
+            <h2 class="card__caption" id="card__caption"></h2>
+            <button class="card__like" id="card__like" type="button"></button>
           </li>
+          </template>
         </ul>
       </section>
     </main>
@@ -69,8 +77,16 @@
         <h2 class="popup__form-title">Edit profile</h2>
         <input type="text" class="popup__form-input" id="inputName" placeholder="name" name="name" value="Jacques Cousteau">
         <input type="text" class="popup__form-input" id="inputJob" placeholder="about me" name="job" value="Explorer">
+
+        <input type="text" class="popup__form-input" id="inputTitle" placeholder="Title" name="title">
+        <input type="text" class="popup__form-input" id="inputImage" placeholder="Image link" name="image">
         <button class="popup__form-save" type="submit" >Save</button>
       </form>
+    </div>
+    <div class="zoom">
+      <img class="zoom__image" type="image" class="popup__image" id="popupImage" name="zoom">
+      <button class="zoom__close" type="button"></button>
+      <caption class="zoom__caption"></caption>
     </div>
   </div>
   <script src="script.js"></script>
