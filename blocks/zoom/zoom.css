@@ -1,6 +1,7 @@
 @import url(./__image/zoom__image.css);
 @import url(./__caption/zoom__caption.css);
 @import url(./__close/zoom__close.css);
+@import url(./__figure/zoom__figure.css);
 
 .zoom {
   display: none;

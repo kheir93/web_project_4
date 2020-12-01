@@ -28,17 +28,16 @@ const initialCards = [
 let open = document.querySelector(".popup");
 let title = document.querySelector(".popup__form-title");
 let save = document.querySelector(".popup__form-save");
-let inputName = document.querySelector("#inputName");
-let inputJob = document.querySelector("#inputJob");
-let inputTitle = document.querySelector("#inputTitle");
-let inputImage = document.querySelector("#inputImage");
-let input = document.querySelector(".popup__form-input")
+
+
+//let input = document.querySelector(".popup__form-input")//
 let popupForm = document.querySelector(".popup__form");
 let popupClose = document.querySelector(".popup__form-close");
 
 let popupZoom = document.querySelector(".zoom");
 let popupZoomImage = document.querySelector(".zoom__image");
 let popupZoomOut = document.querySelector(".zoom__close");
+let textZoom = document.querySelector(".zoom__caption");
 
 let profile = document.querySelector(".profile");
 let editButton = document.querySelector(".profile__edit-button");
@@ -51,10 +50,39 @@ function popup() {
   open.classList.add("popup_open");
 }
 
+//no-save closing popup//
+function discard() {
+  popout();
+};
+
 //closing popup//
 function popout() {
   open.classList.remove("popup_open");
 }
+
+//popup profile form wit edit button//
+function popupProfile() {
+  popup();
+  let inputName = document.querySelector("#inputName");
+  let inputJob = document.querySelector("#inputJob");
+  title.textContent = "Edit profile";
+  inputName.style.display = "flex";
+  inputJob.style.display = "flex";
+  inputImage.style.display = "none";
+  inputTitle.style.display = "none";
+  inputName.value = infoName.textContent;
+  inputJob.value = infoAbout.textContent;
+};
+
+editButton.addEventListener("click", popupProfile);
+
+//save profile updates//
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  infoName.textContent = inputName.value;
+  infoAbout.textContent = inputJob.value;
+  popout();
+};
 
 
 initialCards.forEach((arrayMatch) => { places(arrayMatch) });
@@ -75,83 +103,58 @@ function places(arrayMatch) {
 
   elements.prepend(card);
 
-  function popupAdd() {
-    inputTitle.value = arrayMatch.link;
-    inputImage.value = arrayMatch.name;
-    title.textContent = "New place";
-    inputTitle.style.display = "flex";
-    inputImage.style.display = "flex";
-    inputName.style.display = "none";
-    inputJob.style.display = "none";
-    popup();
-  };
-
-  addButton.addEventListener("click", popupAdd);
-
-  function handleAddSubmit(evt) {
-    evt.preventDefault();
-    //initialCards.replaceWith(arrayMatch[0]);
-    cardTitle.textContent = inputTitle.value;
-    cardImage.src = inputImage.value;
-    popout();
-  };
-
-
-  //cardImage.src = ;
-  //cardTitle.textContent = ;
-
-  //cardTitle.prepend(arrayCardTitle);
-  //cardImage.prepend(arrayCardImage);
-
-  cardLike.addEventListener("click", () => { cardLike.classList.toggle("card__like_active") });
-
-  popupForm.addEventListener("submit", handleAddSubmit);
-
-  cardOut.addEventListener("click", () => { card.classList.add("card_remove") });
-
-  //popup form with add button//
-
-
   function zoom() {
-    inputTitle.value = cardTitle.textContent
+    textZoom.textContent = cardTitle.textContent;
     popupZoomImage.src = cardImage.src;
     popupZoom.classList.add("zoom_in");
   }
 
+  //places zoom//
   cardImage.addEventListener("click", zoom);
 
   popupZoomOut.addEventListener("click", () => { popupZoom.classList.remove("zoom_in") });
 
+  cardLike.addEventListener("click", () => { cardLike.classList.toggle("card__like_active") });
+
+  cardOut.addEventListener("click", () => { card.classList.add("card_remove") });
 };
 
-places(initialCards)
-console.log(places)
 
-//popup profile form wit edit button//
-function popupProfile() {
-  title.textContent = "Edit profile";
-  inputImage.style.display = "none";
-  inputTitle.style.display = "none"
-  inputName.style.display = "flex";
-  inputJob.style.display = "flex";
-  inputName.value = infoName.textContent;
-  inputJob.value = infoAbout.textContent;
+//popup form with add button//
+function popupAdd() {
   popup();
-}
+  cardImage = document.querySelector("#card__image");
+  cardTitle = document.querySelector("#card__caption");
+  inputImage.disabled = false;
+  inputTitle.disabled = false;
+  inputTitle.value = cardTitle.textContent;
+  inputImage.value = cardImage.src;
+  title.textContent = "New place";
+  inputTitle.style.display = "flex";
+  inputImage.style.display = "flex";
+  inputName.style.display = "none";
+  inputJob.style.display = "none";
+};
 
-editButton.addEventListener("click", popupProfile);
-
-function handleFormSubmit(evt) {
+//save places updates//
+function handleAddSubmit(evt) {
   evt.preventDefault();
-  infoName.textContent = inputName.value;
-  infoAbout.textContent = inputJob.value;
+  initialCards.splice(places(0, initialCards.length[initialCards]));
+  cardImage = document.querySelector("#card__image");
+  cardTitle = document.querySelector("#card__caption");
+  cardTitle.textContent = inputTitle.value;
+  cardImage.src = inputImage.value;
   popout();
 };
 
+//popup places form//
+addButton.addEventListener("click", popupAdd);
+
+//save profile//
 popupForm.addEventListener("submit", handleFormSubmit);
 
-function discard() {
-  popout();
-};
+//save places//
+popupForm.addEventListener("submit", handleAddSubmit);
 
+//close button//
 popupClose.addEventListener("click", discard);
