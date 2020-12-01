@@ -90,17 +90,11 @@ function places(arrayMatch) {
 
   function handleAddSubmit(evt) {
     evt.preventDefault();
-    initialCards.replaceWith(arrayMatch[0]);
+    //initialCards.replaceWith(arrayMatch[0]);
     cardTitle.textContent = inputTitle.value;
     cardImage.src = inputImage.value;
     popout();
   };
-
-
-
-
-
-
 
 
   //cardImage.src = ;
@@ -114,8 +108,6 @@ function places(arrayMatch) {
   popupForm.addEventListener("submit", handleAddSubmit);
 
   cardOut.addEventListener("click", () => { card.classList.add("card_remove") });
-
-
 
   //popup form with add button//
 
