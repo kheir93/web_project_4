@@ -1,4 +1,4 @@
-.popup__form-save {
+.popup-add__form-save {
   margin: 48px auto auto;
   background-color: #000;
   border-radius: 2px;
@@ -12,12 +12,12 @@
   border: none;
 }
 
-.popup__form-save:hover {
+.popup-add__form-save:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 320px) {
-  .popup__form-save {
+  .popup-add__form-save {
     font-size: 14px;
     line-height: 17px;
   }

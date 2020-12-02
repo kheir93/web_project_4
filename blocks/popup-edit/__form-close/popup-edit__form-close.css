@@ -1,4 +1,4 @@
-.popup__form-close {
+.popup-edit__form-close {
   background-image: url(../../../images/CloseIcon.svg);
   border: none;
   background-color: transparent;
@@ -13,23 +13,23 @@
   cursor: pointer;
 }
 
-.popup__form-close:active {
+.popup-edit__form-close:active {
   transform: rotate(45deg);
 }
 
-.popup__form-close:hover {
+.popup-edit__form-close:hover {
   opacity: 0.4;
 }
 
 @media screen and (max-width: 768px) {
-  .popup__form-close {
+  .popup-edit__form-close {
     margin-top: -40px;
     margin-left: 90%;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .popup__form-close {
+  .popup-edit__form-close {
     margin-top: -60px;
     margin-left: 85%;
   }

@@ -1,4 +1,4 @@
-.popup__form-input {
+.popup-add__form-input {
   width: 85%;
   margin: 30px auto auto;
   border: 0;
@@ -11,7 +11,7 @@
   padding-bottom: 14px;
 }
 
-.popup__form-input:focus {
+.popup-add__form-input:focus {
   outline: 0;
 }
 

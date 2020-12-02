@@ -25,14 +25,17 @@ const initialCards = [
   }
 ];
 
-let open = document.querySelector(".popup");
-let title = document.querySelector(".popup__form-title");
-let save = document.querySelector(".popup__form-save");
+let openEdit = document.querySelector(".popup-edit");
+let titleEdit = document.querySelector(".popup-edit__form-title");
+let saveEdit = document.querySelector(".popup-edit__form-save");
+let popupFormEdit = document.querySelector(".popup-edit__form");
+let popupCloseEdit = document.querySelector(".popup-edit__form-close");
 
-
-//let input = document.querySelector(".popup__form-input")//
-let popupForm = document.querySelector(".popup__form");
-let popupClose = document.querySelector(".popup__form-close");
+let openAdd = document.querySelector(".popup-add");
+let titleAdd = document.querySelector(".popup-add__form-title");
+let saveAdd = document.querySelector(".popup-add__form-save");
+let popupFormAdd = document.querySelector(".popup-add__form");
+let popupCloseAdd = document.querySelector(".popup-add__form-close");
 
 let popupZoom = document.querySelector(".zoom");
 let popupZoomImage = document.querySelector(".zoom__image");
@@ -45,31 +48,41 @@ let infoName = document.querySelector(".profile__name");
 let infoAbout = document.querySelector(".profile__about");
 let addButton = document.querySelector(".profile__add-button");
 
-//display popup form//
-function popup() {
-  open.classList.add("popup_open");
-}
-
-//no-save closing popup//
-function discard() {
-  popout();
+//display edit popup form//
+function popupEdit() {
+  openEdit.classList.add("popup-edit_open");
 };
 
-//closing popup//
-function popout() {
-  open.classList.remove("popup_open");
-}
+//display add popup form//
+function popupAdd() {
+  openAdd.classList.add("popup-add_open");
+};
+
+//closing edit popup//
+function popoutEdit() {
+  openEdit.classList.remove("popup-edit_open");
+};
+
+//closing add popup//
+function popoutAdd() {
+  openAdd.classList.remove("popup-add_open");
+};
+
+//no-save closing popup//
+function profileDiscard() {
+  popoutEdit();
+};
+
+//no-save closing popup//
+function cardDiscard() {
+  popoutAdd();
+};
 
 //popup profile form wit edit button//
 function popupProfile() {
-  popup();
+  popupEdit();
   let inputName = document.querySelector("#inputName");
   let inputJob = document.querySelector("#inputJob");
-  title.textContent = "Edit profile";
-  inputName.style.display = "flex";
-  inputJob.style.display = "flex";
-  inputImage.style.display = "none";
-  inputTitle.style.display = "none";
   inputName.value = infoName.textContent;
   inputJob.value = infoAbout.textContent;
 };
@@ -81,8 +94,46 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   infoName.textContent = inputName.value;
   infoAbout.textContent = inputJob.value;
-  popout();
+  popoutEdit();
 };
+
+//save profile//
+popupFormEdit.addEventListener("submit", handleFormSubmit);
+//close profile button//
+popupCloseEdit.addEventListener("click", profileDiscard);
+
+
+//popup form with add button//
+function addPlace() {
+  popupAdd();
+  cardImage = document.querySelector("#card__image");
+  cardTitle = document.querySelector("#card__caption");
+  inputTitle.value = cardTitle.textContent;
+  inputImage.value = cardImage.src;
+};
+
+//popup places form//
+addButton.addEventListener("click", addPlace);
+
+//save places updates//
+function handleAddSubmit(evt) {
+  evt.preventDefault();
+  initialCards.splice(places(0, initialCards.length[initialCards]));
+  cardImage = document.querySelector("#card__image");
+  cardTitle = document.querySelector("#card__caption");
+  cardTitle.textContent = inputTitle.value;
+  cardImage.src = inputImage.value;
+  popoutAdd();
+};
+
+
+//save places//
+popupFormAdd.addEventListener("submit", handleAddSubmit);
+
+//close card button//
+popupCloseAdd.addEventListener("click", cardDiscard);
+
+
 
 
 initialCards.forEach((arrayMatch) => { places(arrayMatch) });
@@ -120,41 +171,4 @@ function places(arrayMatch) {
 };
 
 
-//popup form with add button//
-function popupAdd() {
-  popup();
-  cardImage = document.querySelector("#card__image");
-  cardTitle = document.querySelector("#card__caption");
-  inputImage.disabled = false;
-  inputTitle.disabled = false;
-  inputTitle.value = cardTitle.textContent;
-  inputImage.value = cardImage.src;
-  title.textContent = "New place";
-  inputTitle.style.display = "flex";
-  inputImage.style.display = "flex";
-  inputName.style.display = "none";
-  inputJob.style.display = "none";
-};
 
-//save places updates//
-function handleAddSubmit(evt) {
-  evt.preventDefault();
-  initialCards.splice(places(0, initialCards.length[initialCards]));
-  cardImage = document.querySelector("#card__image");
-  cardTitle = document.querySelector("#card__caption");
-  cardTitle.textContent = inputTitle.value;
-  cardImage.src = inputImage.value;
-  popout();
-};
-
-//popup places form//
-addButton.addEventListener("click", popupAdd);
-
-//save profile//
-popupForm.addEventListener("submit", handleFormSubmit);
-
-//save places//
-popupForm.addEventListener("submit", handleAddSubmit);
-
-//close button//
-popupClose.addEventListener("click", discard);

@@ -1,5 +1,4 @@
-
-.popup__form {
+.popup-add__form {
   z-index: 2;
   position: relative;
   display: flex;
@@ -16,13 +15,13 @@
 }
 
 @media screen and (max-width: 768px) {
-  .popup__form {
+  .popup-add__form {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .popup__form {
+  .popup-add__form {
     width: 90%;
   }
 }
