@@ -1,8 +1,15 @@
-<h1># Project 4: Around The U.S.</h1>
+# Project 4: Around The U.S. #
 
-<h2>## Sprint 4</h2>
-<ul>
-<li>Responsive Web Site</li>
-<li>Java Script implementation</li>
-<li>Publication on GitHub <a href="https://kheir93.github.io/web_project_4/">Project_4</li>
-</ul>
+## Sprint 4 ##
+
+1. Responsive Web Site
+2. Java Script implementation
+3 Publication on GitHub [Project_4]("https://kheir93.github.io/web_project_4/")
+
+## Sprint 5 embeded in Sprint 4 ##
+
+1. Java Script implementation
+2. More Java Script implementation & More headaches
+--*Functions
+--*DOM
+3. More & More Java Script implementation & More headaches !!!
