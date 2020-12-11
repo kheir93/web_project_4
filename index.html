@@ -1,4 +1,3 @@
-<!--THANKS !!! For challanging me to make this project better and for your patience, hope this time will be the good one ;)-->
 <!DOCTYPE html>
 <html lang=en>
 
@@ -41,25 +40,25 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020, Around The U.S.</p>
     </footer>
-    <div class="popup-edit">
+    <div class="popup-edit popup">
       <form class="popup-edit__form">
         <button class="popup-edit__form-close" type="button"></button>
         <h2 class="popup-edit__form-title">Edit profile</h2>
-        <input type="text" class="popup-edit__form-input" id="inputName" placeholder="name" name="name" value="Jacques Cousteau" required >
-        <input type="text" class="popup-edit__form-input" id="inputJob" placeholder="about me" name="job" value="Explorer" required >
+        <input type="text" class="popup-edit__form-input popup-add__form-input_name" id="inputName" placeholder="name" name="name" value="Jacques Cousteau" required >
+        <input type="text" class="popup-edit__form-input popup-add__form-input_job" id="inputJob" placeholder="about me" name="job" value="Explorer" required >
         <button class="popup-edit__form-save" type="submit" >Save</button>
       </form>
     </div>
-    <div class="popup-add">
+    <div class="popup-add popup">
       <form class="popup-add__form">
-        <button class="popup-add__form-close" type="button"></button>
+        <button class="popup__close-button" type="button"></button>
         <h2 class="popup-add__form-title">New place</h2>
-        <input type="text" class="popup-add__form-input" id="inputTitle" placeholder="Title" name="title" required >
-        <input type="url" class="popup-add__form-input" id="inputImage" placeholder="Image link" name="image" required >
-        <button class="popup-add__form-save" type="submit" >Save</button>
+        <input type="text" class="popup-add__form-input popup-add__form-input_title" id="inputTitle" placeholder="Title" name="title" required >
+        <input type="url" class="popup-add__form-input popup-add__form-input_image" id="inputImage" placeholder="Image link" name="image" required >
+        <button class="popup-add__form-save" type="submit" >Create</button>
       </form>
     </div>
-    <div class="popup-place">
+    <div class="popup-place popup">
       <figure class="popup-place__figure">
         <button class="popup-place__close" type="button" ></button>
         <img class="popup-place__image" type="image" name="popup-place">
@@ -68,7 +67,8 @@
 
     </div>
   </div>
-  <script src="script.js"></script>
+  <script src="scripts/initialcards.js"></script>
+  <script src="scripts/script.js"></script>
 </body>
 
 </html>

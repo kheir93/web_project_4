@@ -4,7 +4,6 @@
 @import url(./__figure/popup-place__figure.css);
 
 .popup-place {
-  display: none;
   position: fixed;
   width: 100%;
   height: 100%;

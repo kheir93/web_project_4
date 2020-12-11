@@ -23,6 +23,10 @@
   opacity: 0.4;
 }
 
+.popup-place__close:focus {
+  outline: 0;
+}
+
 @media screen and (max-width: 768px) {
   .popup-place__close {
     margin-top: -40px;

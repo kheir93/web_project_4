@@ -21,6 +21,10 @@
   opacity: 0.4;
 }
 
+.popup-add__form-close:focus {
+  outline: 0;
+}
+
 @media screen and (max-width: 768px) {
   .popup-add__form-close {
     margin-top: -40px;
