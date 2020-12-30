@@ -150,10 +150,6 @@ img {
   border-style: none;
 }
 
-figure {
-  border: none;
-  margin: 0;
-}
 /* Forms
    ========================================================================== */
 
@@ -354,15 +350,12 @@ template {
 }
 
 li {
-
   list-style: none;
-
   padding: 0;
   margin: 0;
 }
 
 ul {
-
   list-style: none;
   padding: 0;
   margin: 0;
