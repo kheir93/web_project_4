@@ -10,7 +10,7 @@
   grid-template-rows: repeat(2, auto);
   grid-template-areas:
     "avatar name edit add"
-    "avatar about . ." ;
+    "avatar about . .";
   margin: auto;
   max-width: 880px;
   margin-bottom: 51px;
