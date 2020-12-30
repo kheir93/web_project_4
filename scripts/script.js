@@ -8,10 +8,9 @@ const saveEditButton = document.querySelector(".popup-edit__form-save");
 const inputName = document.querySelector(".popup-add__form-input_name");
 const inputJob = document.querySelector(".popup-add__form-input_job");
 
-const openAdd = document.querySelector(".popup-add");
+const openAddForm = document.querySelector(".popup-add");
 const popupAddForm = document.querySelector(".popup-add__form");
 const popupCloseAdd = document.querySelector(".popup-add__form-close");
-
 
 const inputImage = document.querySelector(".popup-add__form-input_image");
 const inputTitle = document.querySelector(".popup-add__form-input_title");
@@ -28,13 +27,14 @@ const infoName = document.querySelector(".profile__name");
 const infoAbout = document.querySelector(".profile__about");
 const addButton = document.querySelector(".profile__add-button");
 
+
 function cardContent() {
   cardImage = document.querySelector(".card__image");
-  cardTitle = document.querySelector(".card__caption");
+  cardTitle = document.querySelector(".card__caption")
 }
 
 //display add popup form//
-function popupOpen(open) {
+function openPopup(open) {
   open.classList.add("popup_open")
 }
 
@@ -43,10 +43,9 @@ function closePopup(close) {
   close.classList.remove("popup_open")
 }
 
-
 //popup profile form with edit button//
 function popupProfile() {
-  popupOpen(openEdit);
+  openPopup(openEdit);
   inputName.value = infoName.textContent;
   inputJob.value = infoAbout.textContent;
 }
@@ -64,34 +63,18 @@ function handleFormSubmit(evt) {
 //save profile//
 popupFormEdit.addEventListener("submit", handleFormSubmit);
 
-//close profile button//
-//popupCloseEdit.addEventListener("click", popupProfileForm);
-
 popupCloseEdit.addEventListener("click", () => {closePopup(openEdit)});
 
-//no-save closing popup//
-function discard() {
-  //closeAddForm();
-  closeProfileForm();
-}
-
-popupCloseButton.addEventListener("click", () => {closePopup(openAdd)});
-
+popupCloseButton.addEventListener("click", () => {closePopup(openAddForm)});
 
 function handleAddSubmit(evt) {
   evt.preventDefault();
-  const data = {
-    name: inputName,
-    link: inputImage
-  }
   cardTitle.textContent = inputTitle.value;
   cardImage.src = inputImage.value;
-  closePopup(openAdd)
-  addPlace()
+  //const card = document.querySelector(".card")
+  closePopup(openAddForm)
+  cloneCard(popupAddForm)
 }
-
-//close add form//
-//popupCloseButton.addEventListener("click", () => {popupPlaceForm(popupAddForm)})
 
 //save places//
 popupAddForm.addEventListener("submit", handleAddSubmit);
@@ -104,15 +87,17 @@ function addPlace() {
 }
 
 //popup placesform//
-addButton.addEventListener("click", (data) => {
-  popupOpen(openAdd);
-  addPlace(data)
+addButton.addEventListener("click", () => {
+  openPopup(openAddForm);
+  addPlace()
 });
 
 const cardTemplate = document.querySelector("#cardTemplate").content.querySelector(".card");
 const elements = document.querySelector(".elements");
 
-initialCards.forEach(importedCard => {
+function cloneCard(cardTemplate) {
+
+initialCards.forEach(card => {
 
   const cardElement =  cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__caption");
@@ -120,8 +105,8 @@ initialCards.forEach(importedCard => {
   const cardLike = cardElement.querySelector(".card__like");
   const cardDelete = cardElement.querySelector(".card__delete");
 
-  cardTitle.textContent = importedCard.name;
-  cardImage.src = importedCard.link;
+  cardTitle.textContent = card.name;
+  cardImage.src = card.link;
 
   //Toggle likeButton//
   cardLike.addEventListener("click", () => { cardLike.classList.toggle("card__like_active") });
@@ -132,7 +117,7 @@ initialCards.forEach(importedCard => {
   function zoomIn() {
     popupPlaceCaption.textContent = cardTitle.textContent;
     popupPlaceZoom.src = cardImage.src;
-    popupOpen(popupPlace);
+    openPopup(popupPlace);
   }
 
   //close zommed place//
@@ -141,8 +126,17 @@ initialCards.forEach(importedCard => {
   //placeszoom//
   cardImage.addEventListener("click", zoomIn);
 
-  elements.prepend(cardElement);
+   //elements.prepend(cardElement);
 
-  return cardElement;
+   return elements.prepend(cardElement)
 });
+
+
+}
+
+cloneCard(cardTemplate)
+
+
+
+
 
