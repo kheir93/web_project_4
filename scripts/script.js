@@ -69,11 +69,12 @@ popupCloseButton.addEventListener("click", () => {closePopup(openAddForm)});
 
 function handleAddSubmit(evt) {
   evt.preventDefault();
-  cardTitle.textContent = inputTitle.value;
-  cardImage.src = inputImage.value;
+
   //const card = document.querySelector(".card")
   closePopup(openAddForm)
-  cloneCard(popupAddForm)
+  const cardData = {link: inputImage.value, name: inputTitle.value}
+  const cardElement = cloneCard(cardData)
+  elements.prepend(cardElement)
 }
 
 //save places//
@@ -95,9 +96,7 @@ addButton.addEventListener("click", () => {
 const cardTemplate = document.querySelector("#cardTemplate").content.querySelector(".card");
 const elements = document.querySelector(".elements");
 
-function cloneCard(cardTemplate) {
-
-initialCards.forEach(card => {
+function cloneCard(card) {
 
   const cardElement =  cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__caption");
@@ -126,15 +125,17 @@ initialCards.forEach(card => {
   //placeszoom//
   cardImage.addEventListener("click", zoomIn);
 
-   //elements.prepend(cardElement);
-
-   return elements.prepend(cardElement)
-});
-
-
+  return cardElement
 }
 
-cloneCard(cardTemplate)
+//cards//
+initialCards.forEach(card => {
+const cardElement = cloneCard(card)
+elements.prepend(cardElement)
+})
+
+
+
 
 
 
