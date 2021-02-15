@@ -27,7 +27,6 @@ const infoName = document.querySelector(".profile__name");
 const infoAbout = document.querySelector(".profile__about");
 const addButton = document.querySelector(".profile__add-button");
 
-
 function cardContent() {
   cardImage = document.querySelector(".card__image")
   cardTitle = document.querySelector(".card__caption")

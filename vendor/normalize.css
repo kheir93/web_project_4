@@ -42,7 +42,6 @@ h1 {
   margin: 0.67em 0;
 }
 
-
 /* Grouping content
    ========================================================================== */
 
@@ -347,22 +346,4 @@ template {
 
 [hidden] {
   display: none;
-}
-
-li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/*Remove margins for quotes*/
-
-blockquote {
-  margin: 0;
 }
