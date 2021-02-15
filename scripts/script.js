@@ -1,4 +1,4 @@
-const popup = document.querySelector(".popup")
+const popup = document.querySelector(".popup");
 
 const openEdit = document.querySelector(".popup-edit");
 const popupFormEdit = document.querySelector(".popup-edit__form");
@@ -29,7 +29,7 @@ const addButton = document.querySelector(".profile__add-button");
 
 
 function cardContent() {
-  cardImage = document.querySelector(".card__image");
+  cardImage = document.querySelector(".card__image")
   cardTitle = document.querySelector(".card__caption")
 }
 
