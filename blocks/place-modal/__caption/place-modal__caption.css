@@ -1,0 +1,8 @@
+.place-modal__caption {
+  margin: 0;
+  z-index: 5;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #fff;
+}

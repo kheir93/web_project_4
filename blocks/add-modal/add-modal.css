@@ -1,0 +1,23 @@
+@import url(./__form/add-modal__form.css);
+@import url(./__form-close/add-modal__form-close.css);
+@import url(./__form-input/add-modal__form-input.css);
+@import url(./__form-save/add-modal__form-save.css);
+@import url(./__form-title/add-modal__form-title.css);
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.add-modal {
+
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 3;
+  animation: fade 0.5s;
+}
+

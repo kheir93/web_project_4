@@ -43,29 +43,29 @@
       <p class="footer__copyright">&copy; 2021, Around The U.S.</p>
     </footer>
 
-    <div class="popup-edit popup">
-      <form class="popup-edit__form">
-        <button class="popup-edit__form-close" type="button"></button>
-        <h2 class="popup-edit__form-title">Edit profile</h2>
-        <input type="text" class="popup-edit__form-input popup-add__form-input-name" id="inputName" placeholder="name" name="name" value="Jacques Cousteau" required >
-        <input type="text" class="popup-edit__form-input popup-add__form-input-job" id="inputJob" placeholder="about me" name="job" value="Explorer" required >
-        <button class="popup-edit__form-save" type="submit" >Save</button>
+    <div class="edit-modal popup">
+      <form class="edit-modal__form">
+        <button class="edit-modal__form-close" type="button"></button>
+        <h2 class="edit-modal__form-title">Edit profile</h2>
+        <input type="text" class="edit-modal__form-input edit-modal__form-input-name" id="inputName" placeholder="name" name="name" value="Jacques Cousteau" required >
+        <input type="text" class="edit-modal__form-input edit-modal__form-input-job" id="inputJob" placeholder="about me" name="job" value="Explorer" required >
+        <button class="edit-modal__form-save" type="submit" >Save</button>
       </form>
     </div>
-    <div class="popup-add popup">
-      <form class="popup-add__form">
+    <div class="add-modal popup">
+      <form class="add-modal__form">
         <button class="popup__close-button" type="button"></button>
-        <h2 class="popup-add__form-title">New place</h2>
-        <input type="text" class="popup-add__form-input popup-add__form-input-title" id="inputTitle" placeholder="Title" name="title" required >
-        <input type="url" class="popup-add__form-input popup-add__form-input-image" id="inputImage" placeholder="Image link" name="image" required >
-        <button class="popup-add__form-save" type="submit" >Create</button>
+        <h2 class="add-modal__form-title">New place</h2>
+        <input type="text" class="add-modal__form-input add-modal__form-input-title" id="inputTitle" placeholder="Title" name="title" required >
+        <input type="url" class="add-modal__form-input add-modal__form-input-image" id="inputImage" placeholder="Image link" name="image" required >
+        <button class="add-modal__form-save" type="submit" >Create</button>
       </form>
     </div>
-    <div class="popup-place popup">
-      <figure class="popup-place__figure">
-        <button class="popup-place__close" type="button" ></button>
-        <img class="popup-place__image" type="image" name="popup-place">
-        <h2 class="popup-place__caption"></h2>
+    <div class="place-modal popup">
+      <figure class="place-modal__figure">
+        <button class="place-modal__close" type="button" ></button>
+        <img class="place-modal__image" type="image" name="place-modal">
+        <h2 class="place-modal__caption"></h2>
       </figure>
     </div>
   </div>

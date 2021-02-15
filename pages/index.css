@@ -10,9 +10,9 @@
 @import url(../blocks/card/_remove/card_remove.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_open/popup_open.css);
-@import url(../blocks/popup-edit/popup-edit.css);
-@import url(../blocks/popup-add/popup-add.css);
-@import url(../blocks/popup-place/popup-place.css);
-@import url(../blocks/popup-place/_open/popup-place_open.css);
-@import url(../blocks/popup-edit/_open/popup-edit_open.css);
-@import url(../blocks/popup-add/_open/popup-add_open.css);
+@import url(../blocks/edit-modal/edit-modal.css);
+@import url(../blocks/add-modal/add-modal.css);
+@import url(../blocks/place-modal/place-modal.css);
+@import url(../blocks/place-modal/_open/place-modal_open.css);
+@import url(../blocks/edit-modal/_open/edit-modal_open.css);
+@import url(../blocks/add-modal/_open/add-modal_open.css);

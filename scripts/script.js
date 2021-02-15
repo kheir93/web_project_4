@@ -1,25 +1,25 @@
 const popup = document.querySelector(".popup");
 
-const openEdit = document.querySelector(".popup-edit");
-const popupFormEdit = document.querySelector(".popup-edit__form");
-const popupCloseEdit = document.querySelector(".popup-edit__form-close");
-const saveEditButton = document.querySelector(".popup-edit__form-save");
+const openEdit = document.querySelector(".edit-modal");
+const popupFormEdit = document.querySelector(".edit-modal__form");
+const popupCloseEdit = document.querySelector(".edit-modal__form-close");
+const saveEditButton = document.querySelector(".edit-modal__form-save");
 
-const inputName = document.querySelector(".popup-add__form-input-name");
-const inputJob = document.querySelector(".popup-add__form-input-job");
+const inputName = document.querySelector(".edit-modal__form-input-name");
+const inputJob = document.querySelector(".edit-modal__form-input-job");
 
-const openAddForm = document.querySelector(".popup-add");
-const popupAddForm = document.querySelector(".popup-add__form");
-const popupCloseAdd = document.querySelector(".popup-add__form-close");
+const openAddForm = document.querySelector(".add-modal");
+const popupAddForm = document.querySelector(".add-modal__form");
+const popupCloseAdd = document.querySelector(".add-modal__form-close");
 
-const inputImage = document.querySelector(".popup-add__form-input-image");
-const inputTitle = document.querySelector(".popup-add__form-input-title");
+const inputImage = document.querySelector(".add-modal__form-input-image");
+const inputTitle = document.querySelector(".add-modal__form-input-title");
 
-const popupPlace = document.querySelector(".popup-place");
-const popupPlaceZoom = document.querySelector(".popup-place__image");
-const popupPlaceClose = document.querySelector(".popup-place__close");
+const popupPlace = document.querySelector(".place-modal");
+const popupPlaceZoom = document.querySelector(".place-modal__image");
+const popupPlaceClose = document.querySelector(".place-modal__close");
 const popupCloseButton = document.querySelector(".popup__close-button");
-const popupPlaceCaption = document.querySelector(".popup-place__caption");
+const popupPlaceCaption = document.querySelector(".place-modal__caption");
 
 const profile = document.querySelector(".profile");
 const editButton = document.querySelector(".profile__edit-button");

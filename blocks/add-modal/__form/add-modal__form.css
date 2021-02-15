@@ -1,0 +1,27 @@
+.add-modal__form {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+  width: 430px;
+  height: auto;
+  overflow: visible;
+  padding-bottom: 36px;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .add-modal__form {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .add-modal__form {
+    width: 90%;
+  }
+}
+
