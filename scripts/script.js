@@ -5,15 +5,15 @@ const popupFormEdit = document.querySelector(".popup-edit__form");
 const popupCloseEdit = document.querySelector(".popup-edit__form-close");
 const saveEditButton = document.querySelector(".popup-edit__form-save");
 
-const inputName = document.querySelector(".popup-add__form-input_name");
-const inputJob = document.querySelector(".popup-add__form-input_job");
+const inputName = document.querySelector(".popup-add__form-input-name");
+const inputJob = document.querySelector(".popup-add__form-input-job");
 
 const openAddForm = document.querySelector(".popup-add");
 const popupAddForm = document.querySelector(".popup-add__form");
 const popupCloseAdd = document.querySelector(".popup-add__form-close");
 
-const inputImage = document.querySelector(".popup-add__form-input_image");
-const inputTitle = document.querySelector(".popup-add__form-input_title");
+const inputImage = document.querySelector(".popup-add__form-input-image");
+const inputTitle = document.querySelector(".popup-add__form-input-title");
 
 const popupPlace = document.querySelector(".popup-place");
 const popupPlaceZoom = document.querySelector(".popup-place__image");
