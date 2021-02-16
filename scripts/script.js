@@ -27,11 +27,6 @@ const infoName = document.querySelector(".profile__name");
 const infoAbout = document.querySelector(".profile__about");
 const addButton = document.querySelector(".profile__add-button");
 
-function cardContent() {
-  cardImage = document.querySelector(".card__image")
-  cardTitle = document.querySelector(".card__caption")
-}
-
 //display add popup form//
 function openPopup(open) {
   open.classList.add("popup_open")
@@ -69,7 +64,7 @@ popupCloseButton.addEventListener("click", () => {closePopup(openAddForm)});
 function handleAddSubmit(evt) {
   evt.preventDefault();
 
-  //const card = document.querySelector(".card")
+
   closePopup(openAddForm)
   const cardData = {link: inputImage.value, name: inputTitle.value}
   const cardElement = cloneCard(cardData)
@@ -79,17 +74,13 @@ function handleAddSubmit(evt) {
 //save places//
 popupAddForm.addEventListener("submit", handleAddSubmit);
 
-//popup form with add button//
-function addPlace() {
-  cardContent()
-  inputTitle.value = cardTitle.textContent;
-  inputImage.value = cardImage.src;
-}
-
-//popup placesform//
+//popup places form//
 addButton.addEventListener("click", () => {
   openPopup(openAddForm);
-  addPlace()
+  const cardImage = document.querySelector(".card__image")
+  const cardTitle = document.querySelector(".card__caption")
+  inputTitle.value = cardTitle.textContent;
+  inputImage.value = cardImage.src;
 });
 
 const cardTemplate = document.querySelector("#cardTemplate").content.querySelector(".card");
@@ -132,11 +123,3 @@ initialCards.forEach(card => {
 const cardElement = cloneCard(card)
 elements.prepend(cardElement)
 })
-
-
-
-
-
-
-
-
