@@ -1,19 +1,15 @@
-const popup = document.querySelector(".popup");
+const editModal = document.querySelector(".edit-modal");
 
-const openEdit = document.querySelector(".edit-modal");
-const popupFormEdit = document.querySelector(".edit-modal__form");
-const popupCloseEdit = document.querySelector(".edit-modal__form-close");
-const saveEditButton = document.querySelector(".edit-modal__form-save");
+const popupCloseEdit = document.querySelector(".form__close");
+const saveEditButton = document.querySelector(".form__save");
 
-const inputName = document.querySelector(".edit-modal__form-input-name");
-const inputJob = document.querySelector(".edit-modal__form-input-job");
+const inputName = document.querySelector(".form__input_name");
+const inputJob = document.querySelector(".form__input_job");
 
-const openAddForm = document.querySelector(".add-modal");
-const popupAddForm = document.querySelector(".add-modal__form");
-const popupCloseAdd = document.querySelector(".add-modal__form-close");
+const addModal = document.querySelector(".add-modal");
 
-const inputImage = document.querySelector(".add-modal__form-input-image");
-const inputTitle = document.querySelector(".add-modal__form-input-title");
+const inputImage = document.querySelector(".form__input_image");
+const inputTitle = document.querySelector(".form__input_title");
 
 const popupPlace = document.querySelector(".place-modal");
 const popupPlaceZoom = document.querySelector(".place-modal__image");
@@ -27,19 +23,21 @@ const infoName = document.querySelector(".profile__name");
 const infoAbout = document.querySelector(".profile__about");
 const addButton = document.querySelector(".profile__add-button");
 
+const popup = document.querySelector(".popup")
+
 //display add popup form//
 function openPopup(open) {
-  open.classList.add("popup_open")
+  open.classList.add("popup_open");
 }
 
 //closing add popup//
 function closePopup(close) {
-  close.classList.remove("popup_open")
+  close.classList.remove("popup_open");
 }
 
 //popup profile form with edit button//
 function popupProfile() {
-  openPopup(openEdit);
+  openPopup(editModal);
   inputName.value = infoName.textContent;
   inputJob.value = infoAbout.textContent;
 }
@@ -51,37 +49,69 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   infoName.textContent = inputName.value;
   infoAbout.textContent = inputJob.value;
-  closePopup(openEdit)
+  closePopup(editModal)
 }
 
 //save profile//
-popupFormEdit.addEventListener("submit", handleFormSubmit);
+editModal.addEventListener("submit", handleFormSubmit);
 
-popupCloseEdit.addEventListener("click", () => {closePopup(openEdit)});
-
-popupCloseButton.addEventListener("click", () => {closePopup(openAddForm)});
-
-function handleAddSubmit(evt) {
-  evt.preventDefault();
-
-
-  closePopup(openAddForm)
-  const cardData = {link: inputImage.value, name: inputTitle.value}
-  const cardElement = cloneCard(cardData)
-  elements.prepend(cardElement)
+//close profile form//
+editModal.addEventListener("click", (evt)  => {
+  if  (evt.target.classList.contains("form__input")) {
+    openPopup(form)
+  } else if (evt.target.classList.contains('popup__close-button'))
+  if  (evt.target.classList.contains('popup')) {
 }
+  closePopup(editModal);
+})
 
-//save places//
-popupAddForm.addEventListener("submit", handleAddSubmit);
+//close profile form with escape key//
+editButton.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    closePopup(popup)
+  }
+});
 
-//popup places form//
+//popup.addEventListener("keydown", keyHandler)
+
+//editModal.addEventListener("keydown", keyHandler);
+
+//popup place form//
 addButton.addEventListener("click", () => {
-  openPopup(openAddForm);
+  openPopup(addModal);
   const cardImage = document.querySelector(".card__image")
   const cardTitle = document.querySelector(".card__caption")
   inputTitle.value = cardTitle.textContent;
   inputImage.value = cardImage.src;
 });
+
+function handleAddSubmit(evt) {
+  evt.preventDefault();
+  closePopup(addModal)
+  const cardData = {link: inputImage.value, name: inputTitle.value}
+  const cardElement = cloneCard(cardData)
+  elements.prepend(cardElement)
+}
+
+//close place form//
+addModal.addEventListener('click', (evt) => {
+  if  (evt.target.classList.contains("form__input")) {
+    openPopup(form)
+  } else if (evt.target.classList.contains('popup__close-button'))
+  if  (evt.target.classList.contains('popup')) {
+}
+  closePopup(addModal);
+})
+
+//close place form with escape key//
+addButton.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    closePopup(addModal)
+  }
+});
+
+//save place//
+addModal.addEventListener("submit", handleAddSubmit);
 
 const cardTemplate = document.querySelector("#cardTemplate").content.querySelector(".card");
 const elements = document.querySelector(".elements");
@@ -110,7 +140,9 @@ function cloneCard(card) {
   }
 
   //close zommed place//
-  popupPlaceClose.addEventListener("click", () => {closePopup(popupPlace)});
+  popupPlace.addEventListener("click", () => {
+    closePopup(popupPlace)
+  });
 
   //placeszoom//
   cardImage.addEventListener("click", zoomIn);

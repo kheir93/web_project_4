@@ -1,4 +1,4 @@
-.edit-modal__form-title {
+.form__title {
   width: 85%;
   margin: 25px auto 15px;
   text-align: start;
@@ -7,8 +7,16 @@
   line-height: 29px;
 }
 
+@media screen and (max-width: 768px) {
+  .form__title {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+
 @media screen and (max-width: 320px) {
-  .edit-modal__form-title {
+  .form__title {
     font-size: 18px;
     line-height: 22px;
   }

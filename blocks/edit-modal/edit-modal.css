@@ -1,9 +1,3 @@
-@import url(./__form/edit-modal__form.css);
-@import url(./__form-close/edit-modal__form-close.css);
-@import url(./__form-input/edit-modal__form-input.css);
-@import url(./__form-save/edit-modal__form-save.css);
-@import url(./__form-title/edit-modal__form-title.css);
-
 @keyframes fadein {
   from {opacity: 0;}
   to {opacity: 1;

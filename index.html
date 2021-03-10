@@ -17,9 +17,9 @@
       <img class="logo" src="images/Logo.svg" alt="logo">
     </header>
 
-    <main class="main">
+    <main>
       <section class="profile">
-        <img class="profile__avatar " src="images/JYCousteau.jpg" alt="Comander Cousteau">
+        <img class="profile__avatar" src="images/JYCousteau.jpg" alt="Comander Cousteau">
           <h1 class="profile__name" id="infoName">Jacques Cousteau</h1>
           <button class="profile__edit-button" type="button"></button>
           <p class="profile__about" id="infoAbout">Explorer</p>
@@ -38,29 +38,34 @@
         </ul>
       </section>
     </main>
-
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021, Around The U.S.</p>
     </footer>
-
+    <!--profile modal-->
     <div class="edit-modal popup">
-      <form class="edit-modal__form">
-        <button class="edit-modal__form-close" type="button"></button>
-        <h2 class="edit-modal__form-title">Edit profile</h2>
-        <input type="text" class="edit-modal__form-input edit-modal__form-input-name" id="inputName" placeholder="name" name="name" value="Jacques Cousteau" required >
-        <input type="text" class="edit-modal__form-input edit-modal__form-input-job" id="inputJob" placeholder="about me" name="job" value="Explorer" required >
-        <button class="edit-modal__form-save" type="submit" >Save</button>
+      <form class="form">
+          <button class="popup__close-button" type="button"></button>
+          <h2 class="form__title">Edit profile</h2>
+          <input type="text" class="form__input form__input_name" id="inputName" placeholder="name" name="name" value="Jacques Cousteau" required minlength="2" maxlength="40">
+          <span class="form__input-error inputName-error"></span>
+          <input type="text" class="form__input form__input_job" id="inputJob" placeholder="about me" name="job" value="Explorer" required minlength="2" maxlength="200">
+          <span class="form__input-error inputJob-error"></span>
+        <button class="form__save" type="submit">Save</button>
       </form>
     </div>
+    <!--add-place modal-->
     <div class="add-modal popup">
-      <form class="add-modal__form">
+      <form class="form">
         <button class="popup__close-button" type="button"></button>
-        <h2 class="add-modal__form-title">New place</h2>
-        <input type="text" class="add-modal__form-input add-modal__form-input-title" id="inputTitle" placeholder="Title" name="title" required >
-        <input type="url" class="add-modal__form-input add-modal__form-input-image" id="inputImage" placeholder="Image link" name="image" required >
-        <button class="add-modal__form-save" type="submit" >Create</button>
+        <h2 class="form__title">New place</h2>
+        <input type="text" class="form__input form__input_title" id="inputTitle" placeholder="Title" value="" name="title" required minlength="1" maxlength="30">
+        <span class="form__input-error inputTitle-error"></span>
+        <input type="url" class="form__input form__input_image" id="inputImage" placeholder="Image link" value="" name="image" required>
+        <span class="form__input-error inputImage-error"></span>
+        <button class="form__save" type="submit">Create</button>
       </form>
     </div>
+    <!--zoom-place modal-->
     <div class="place-modal popup">
       <figure class="place-modal__figure">
         <button class="place-modal__close" type="button" ></button>
@@ -69,8 +74,8 @@
       </figure>
     </div>
   </div>
-
   <script src="scripts/initialcards.js"></script>
   <script src="scripts/script.js"></script>
+  <script src="scripts/form.js"></script>
 </body>
 </html>

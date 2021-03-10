@@ -1,4 +1,4 @@
-.add-modal__form-input {
+.form__input {
   width: 85%;
   margin: 30px auto auto;
   border: 0;
@@ -11,7 +11,9 @@
   padding-bottom: 14px;
 }
 
-.add-modal__form-input:focus {
+.form__input:focus {
   outline: 0;
 }
+
+
 

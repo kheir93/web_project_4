@@ -1,4 +1,12 @@
-.add-modal__form {
+@import url(./__close/form__close.css);
+@import url(./__input/form__input.css);
+@import url(./__input-error/form__input-error.css);
+@import url(./__save/form__save.css);
+@import url(./__title/form__title.css);
+
+
+
+.form {
   z-index: 2;
   position: relative;
   display: flex;
@@ -14,13 +22,13 @@
 }
 
 @media screen and (max-width: 768px) {
-  .add-modal__form {
+  .form {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .add-modal__form {
+  .form {
     width: 90%;
   }
 }
