@@ -1,29 +1,21 @@
 const editModal = document.querySelector(".edit-modal");
 
-const popupCloseEdit = document.querySelector(".form__close");
-const saveEditButton = document.querySelector(".form__save");
-
 const inputName = document.querySelector(".form__input_name");
 const inputJob = document.querySelector(".form__input_job");
-
-const addModal = document.querySelector(".add-modal");
-
 const inputImage = document.querySelector(".form__input_image");
 const inputTitle = document.querySelector(".form__input_title");
 
-const popupPlace = document.querySelector(".place-modal");
-const popupPlaceZoom = document.querySelector(".place-modal__image");
-const popupPlaceClose = document.querySelector(".place-modal__close");
-const popupCloseButton = document.querySelector(".popup__close-button");
-const popupPlaceCaption = document.querySelector(".place-modal__caption");
+const addModal = document.querySelector(".add-modal");
+
+const placeModal = document.querySelector(".place-modal");
+const PlaceModalImage = document.querySelector(".place-modal__image");
+const placeModalCaption = document.querySelector(".place-modal__caption");
 
 const profile = document.querySelector(".profile");
 const editButton = document.querySelector(".profile__edit-button");
 const infoName = document.querySelector(".profile__name");
 const infoAbout = document.querySelector(".profile__about");
 const addButton = document.querySelector(".profile__add-button");
-
-const popup = document.querySelector(".popup")
 
 //display add popup form//
 function openPopup(open) {
@@ -44,7 +36,7 @@ function popupProfile() {
 
 editButton.addEventListener("click", popupProfile);
 
-//save profile updates//
+//profile submit function//
 function handleFormSubmit(evt) {
   evt.preventDefault();
   infoName.textContent = inputName.value;
@@ -56,25 +48,21 @@ function handleFormSubmit(evt) {
 editModal.addEventListener("submit", handleFormSubmit);
 
 //close profile form//
-editModal.addEventListener("click", (evt)  => {
-  if  (evt.target.classList.contains("form__input")) {
-    openPopup(form)
-  } else if (evt.target.classList.contains('popup__close-button'))
-  if  (evt.target.classList.contains('popup')) {
-}
-  closePopup(editModal);
-})
+editModal.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup__close-button") || (evt.target.classList.contains("edit-modal"))) {
+      closePopup(editModal);
+    } else { if (evt.target.classList.contains("form"))  {
+      openPopup(editModal)
+      }
+    }
+  });
 
 //close profile form with escape key//
 editButton.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    closePopup(popup)
-  }
+    closePopup(editModal)
+   }
 });
-
-//popup.addEventListener("keydown", keyHandler)
-
-//editModal.addEventListener("keydown", keyHandler);
 
 //popup place form//
 addButton.addEventListener("click", () => {
@@ -85,6 +73,7 @@ addButton.addEventListener("click", () => {
   inputImage.value = cardImage.src;
 });
 
+//Add place submit function//
 function handleAddSubmit(evt) {
   evt.preventDefault();
   closePopup(addModal)
@@ -94,14 +83,14 @@ function handleAddSubmit(evt) {
 }
 
 //close place form//
-addModal.addEventListener('click', (evt) => {
-  if  (evt.target.classList.contains("form__input")) {
-    openPopup(form)
-  } else if (evt.target.classList.contains('popup__close-button'))
-  if  (evt.target.classList.contains('popup')) {
-}
-  closePopup(addModal);
-})
+addModal.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("popup__close-button") || (evt.target.classList.contains("add-modal"))) {
+    closePopup(addModal);
+  } else { if (evt.target.classList.contains("form"))  {
+    openPopup(addModal)
+    }
+  }
+});
 
 //close place form with escape key//
 addButton.addEventListener("keydown", function (evt) {
@@ -112,6 +101,8 @@ addButton.addEventListener("keydown", function (evt) {
 
 //save place//
 addModal.addEventListener("submit", handleAddSubmit);
+
+
 
 const cardTemplate = document.querySelector("#cardTemplate").content.querySelector(".card");
 const elements = document.querySelector(".elements");
@@ -133,19 +124,29 @@ function cloneCard(card) {
   //Remove card//
   cardDelete.addEventListener("click", () => { cardElement.classList.add("card_remove") });
 
-  function zoomIn() {
-    popupPlaceCaption.textContent = cardTitle.textContent;
-    popupPlaceZoom.src = cardImage.src;
-    openPopup(popupPlace);
-  }
-
-  //close zommed place//
-  popupPlace.addEventListener("click", () => {
-    closePopup(popupPlace)
+  //card zoom//
+  cardImage.addEventListener("click", () => {
+    placeModalCaption.textContent = cardTitle.textContent;
+    PlaceModalImage.src = cardImage.src;
+    openPopup(placeModal);
   });
 
-  //placeszoom//
-  cardImage.addEventListener("click", zoomIn);
+  //close place image//
+  placeModal.addEventListener("click", (evt) => {
+   if (evt.target.classList.contains("place-modal__close") || (evt.target.classList.contains("place-modal"))) {
+      closePopup(placeModal);
+    } else { if (evt.target.classList.contains("place-modal__image"))  {
+      openPopup(placeModal)
+      }
+    }
+  });
+
+  //close place image with escape key//
+  cardImage.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") {
+      closePopup(placeModal)
+    }
+  });
 
   return cardElement
 }
@@ -154,4 +155,4 @@ function cloneCard(card) {
 initialCards.forEach(card => {
 const cardElement = cloneCard(card)
 elements.prepend(cardElement)
-})
+});
