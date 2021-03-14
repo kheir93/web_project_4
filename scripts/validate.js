@@ -2,15 +2,13 @@
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add("form__input_type_error");
+  formErrorActive(inputElement, errorElement)
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
 };
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove("form__input_type_error");
-  errorElement.classList.remove("form__input-error_active");
+  formErrorInactive(inputElement, errorElement);
   errorElement.textContent = "";
 };
 
@@ -29,11 +27,12 @@ const hasInvalidInput = (inputList) => {
 };
 
 const toggleButtonState = (inputList, buttonElement) => {
-  console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("form__save_inactive");
+    document.addEventListener("keydown", EnterkeyHandler);
   } else {
     buttonElement.classList.remove("form__save_inactive");
+    document.removeEventListener("keydown", EnterkeyHandler);
   }
 };
 
@@ -61,5 +60,21 @@ const enableValidation = () => {
     });
   });
 };
+
+function EnterkeyHandler(evt) {
+  if (evt.key === "Enter") {
+    evt.preventDefault()
+    }
+}
+
+function formErrorActive(type, input) {
+  type.classList.add("form__input_type_error");
+  input.classList.add("form__input-error_active");
+}
+
+function formErrorInactive(type, input) {
+  type.classList.remove("form__input_type_error");
+  input.classList.remove("form__input-error_active");
+}
 
 enableValidation();
