@@ -63,6 +63,7 @@ const enableValidation = (settings) => {
   });
 };
 
+//Don't forget settings argument when callback//
 enableValidation({
   popupSelector: ".popup",
   formSelector : ".form",
