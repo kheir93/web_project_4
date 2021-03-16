@@ -1,24 +1,24 @@
 //FORM VALIDATION MANAGEMENT//
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = errorMessage;
-  formErrorActive(inputElement, errorElement);
+  inputElement.classList.add(settings.inputErrorClass);
+  errorElement.classList.add(settings.errorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, settings) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  formErrorInactive(inputElement, errorElement);
   errorElement.textContent = "";
+  inputElement.classList.remove(settings.inputErrorClass);
+  errorElement.classList.remove(settings.errorClass);
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, settings) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-
+    showInputError(formElement, inputElement, inputElement.validationMessage, settings);
   } else {
-    hideInputError(formElement, inputElement);
-
+    hideInputError(formElement, inputElement, settings);
   }
 };
 
@@ -28,54 +28,47 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, settings) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add("form__save_inactive");
+    buttonElement.classList.add(settings.formSubmitInactive);
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove("form__save_inactive");
+    buttonElement.classList.remove(settings.formSubmitInactive);
     buttonElement.disabled = false;
   }
 };
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-  const buttonElement = formElement.querySelector(".form__save");
-  toggleButtonState(inputList, buttonElement);
+const setEventListeners = (formElement, settings) => {
+  const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+  const buttonElement = formElement.querySelector(settings.formSubmit);
+  toggleButtonState(inputList, buttonElement, settings);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      checkInputValidity(formElement, inputElement, settings);
+      toggleButtonState(inputList, buttonElement, settings);
     });
   });
 };
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".popup"));
+const enableValidation = (settings) => {
+  const formList = Array.from(document.querySelectorAll(settings.popupSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
-    const fieldsetList = Array.from(formElement.querySelectorAll(".form"));
+    const fieldsetList = Array.from(formElement.querySelectorAll(settings.formSelector));
     fieldsetList.forEach((fieldset) => {
-      setEventListeners(fieldset);
+      setEventListeners(fieldset, settings);
     });
   });
 };
 
-function formErrorActive(type, input) {
-  type.classList.add("form__input_type_error");
-  input.classList.add("form__input-error_active");
-}
-
-function formErrorInactive(type, input) {
-  type.classList.remove("form__input_type_error");
-  input.classList.remove("form__input-error_active");
-}
-
 enableValidation({
+  popupSelector: ".popup",
   formSelector : ".form",
-  InputSelector: ".form__input",
+  formSubmit: ".form__save",
+  inputSelector: ".form__input",
   inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active"
+  errorClass: "form__input-error_active",
+  formSubmitInactive: "form__save_inactive"
 });
