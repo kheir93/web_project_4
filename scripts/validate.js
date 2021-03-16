@@ -2,8 +2,8 @@
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  formErrorActive(inputElement, errorElement)
   errorElement.textContent = errorMessage;
+  formErrorActive(inputElement, errorElement);
 };
 
 const hideInputError = (formElement, inputElement) => {
@@ -15,8 +15,10 @@ const hideInputError = (formElement, inputElement) => {
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage);
+
   } else {
     hideInputError(formElement, inputElement);
+
   }
 };
 
@@ -29,10 +31,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("form__save_inactive");
-    document.addEventListener("keydown", EnterkeyHandler);
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove("form__save_inactive");
-    document.removeEventListener("keydown", EnterkeyHandler);
+    buttonElement.disabled = false;
   }
 };
 
@@ -61,12 +63,6 @@ const enableValidation = () => {
   });
 };
 
-function EnterkeyHandler(evt) {
-  if (evt.key === "Enter") {
-    evt.preventDefault()
-    }
-}
-
 function formErrorActive(type, input) {
   type.classList.add("form__input_type_error");
   input.classList.add("form__input-error_active");
@@ -77,4 +73,9 @@ function formErrorInactive(type, input) {
   input.classList.remove("form__input-error_active");
 }
 
-enableValidation();
+enableValidation({
+  formSelector : ".form",
+  InputSelector: ".form__input",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active"
+});

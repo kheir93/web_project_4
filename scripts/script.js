@@ -21,6 +21,7 @@ const elements = document.querySelector(".elements");
 //display modal popup//
 function openPopup(open) {
   open.classList.add("popup_open");
+  document.addEventListener("keydown", (evt) => escapeKeyHandler(evt, open));
 }
 
 //closing modal popup//
@@ -29,10 +30,10 @@ function closePopup(close) {
 }
 
 //Escape key function//
-function EscapeKeyHandler(evt, target) {
+function escapeKeyHandler(evt, target) {
   if (evt.key === "Escape") {
     closePopup(target);
-    document.removeEventListener("keydown", EscapeKeyHandler);
+    document.removeEventListener("keydown", escapeKeyHandler);
     }
 }
 
@@ -41,7 +42,6 @@ function popupProfile() {
   openPopup(editModal);
   inputName.value = infoName.textContent;
   inputJob.value = infoAbout.textContent;
-  document.addEventListener("keydown", (evt) => EscapeKeyHandler(evt, editModal));
 }
 
 //profile submit function//
@@ -82,7 +82,6 @@ function cloneCard(card) {
   cardImage.addEventListener("click", () => {
     placeModalCaption.textContent = cardTitle.textContent;
     PlaceModalImage.src = cardImage.src;
-    document.addEventListener("keydown", (evt) => EscapeKeyHandler(evt, placeModal));
     openPopup(placeModal);
   });
 
@@ -108,7 +107,6 @@ addButton.addEventListener("click", () => {
   const cardTitle = document.querySelector(".card__caption")
   inputTitle.value = cardTitle.textContent;
   inputImage.value = cardImage.src;
-  document.addEventListener("keydown", (evt) => EscapeKeyHandler(evt, addModal));
 });
 
 //close place form//
