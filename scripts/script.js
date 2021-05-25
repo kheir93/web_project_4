@@ -1,3 +1,6 @@
+import FormValidator from "./FormValidator.js"
+import initialCards from "./initialcards.js"
+
 const editModal = document.querySelector(".edit-modal");
 const addModal = document.querySelector(".add-modal");
 
@@ -18,6 +21,22 @@ const addButton = document.querySelector(".profile__add-button");
 const cardTemplate = document.querySelector("#cardTemplate").content.querySelector(".card");
 const elements = document.querySelector(".elements");
 
+const defaultFormConfig = {
+  popupSelector: ".popup",
+  formSelector : ".form",
+  formSubmit: ".form__save",
+  inputSelector: ".form__input",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+  formSubmitInactive: "form__save_inactive"
+};
+
+const editFormValidator = new FormValidator(defaultFormConfig, editModal);
+const addModalValidator = new FormValidator(defaultFormConfig, addModal);
+
+editFormValidator.enableValidation();
+addModalValidator.enableValidation();
+
 //display modal popup//
 function openPopup(open) {
   open.classList.add("popup_open");
@@ -27,13 +46,13 @@ function openPopup(open) {
 //closing modal popup//
 function closePopup(close) {
   close.classList.remove("popup_open");
+  document.removeEventListener("keydown", escapeKeyHandler);
 }
 
 //Escape key function//
 function escapeKeyHandler(evt, target) {
   if (evt.key === "Escape") {
     closePopup(target);
-    document.removeEventListener("keydown", escapeKeyHandler);
     }
 }
 
@@ -131,3 +150,5 @@ initialCards.forEach(card => {
 const cardElement = cloneCard(card)
 elements.prepend(cardElement)
 });
+
+
