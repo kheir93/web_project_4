@@ -1,6 +1,6 @@
 //FORM VALIDATION MANAGEMENT//
 
-/*const showInputError = (formElement, inputElement, errorMessage, settings) => {
+const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = errorMessage;
   inputElement.classList.add(settings.inputErrorClass);
@@ -61,7 +61,7 @@ const enableValidation = (settings) => {
       setEventListeners(fieldset, settings);
     });
   });
-};*/
+};
 
 //Don't forget settings argument when callback//
 const enableValidation = (settings) => {
