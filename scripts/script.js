@@ -1,5 +1,6 @@
 import FormValidator from "./FormValidator.js"
 import initialCards from "./initialcards.js"
+import Card from "./Card.js"
 
 const editModal = document.querySelector(".edit-modal");
 const addModal = document.querySelector(".add-modal");
@@ -10,17 +11,15 @@ const inputImage = document.querySelector(".form__input_image");
 const inputTitle = document.querySelector(".form__input_title");
 
 const placeModal = document.querySelector(".place-modal");
-const PlaceModalImage = document.querySelector(".place-modal__image");
-const placeModalCaption = document.querySelector(".place-modal__caption");
 
 const editButton = document.querySelector(".profile__edit-button");
 const infoName = document.querySelector(".profile__name");
 const infoAbout = document.querySelector(".profile__about");
 const addButton = document.querySelector(".profile__add-button");
 
-const cardTemplate = document.querySelector("#cardTemplate").content.querySelector(".card");
 const elements = document.querySelector(".elements");
 
+//default conf for formvalidator load//
 const defaultFormConfig = {
   popupSelector: ".popup",
   formSelector : ".form",
@@ -31,11 +30,35 @@ const defaultFormConfig = {
   formSubmitInactive: "form__save_inactive"
 };
 
-const editFormValidator = new FormValidator(defaultFormConfig, editModal);
+//profile form fields validation handling//
+const editModalValidator = new FormValidator(defaultFormConfig, editModal);
+//card form fields validation handling//
 const addModalValidator = new FormValidator(defaultFormConfig, addModal);
 
-editFormValidator.enableValidation();
+//forms validation check//
+editModalValidator.enableValidation();
 addModalValidator.enableValidation();
+
+//Add place submit function//
+const handleAddSubmit = (evt) => {
+  evt.preventDefault();
+  closePopup(addModal);
+  renderCard({
+    name: inputTitle.value,
+    link: inputImage.value
+  }, elements);
+}
+
+//Card fulfillment//
+const renderCard = (data, elements) => {
+  const cardData = new Card(data, "#cardTemplate");
+  elements.prepend(cardData.generateCard());
+}
+
+//Card populating//
+initialCards.forEach((data) => {
+  renderCard(data, elements)
+})
 
 //display modal popup//
 function openPopup(open) {
@@ -71,42 +94,7 @@ function handleFormSubmit(evt) {
   closePopup(editModal)
 }
 
-//Add place submit function//
-function handleAddSubmit(evt) {
-  evt.preventDefault();
-  closePopup(addModal)
-  const cardData = {link: inputImage.value, name: inputTitle.value}
-  const cardElement = cloneCard(cardData)
-  elements.prepend(cardElement)
-}
-
-function cloneCard(card) {
-
-  const cardElement =  cardTemplate.cloneNode(true);
-  const cardTitle = cardElement.querySelector(".card__caption");
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardLike = cardElement.querySelector(".card__like");
-  const cardDelete = cardElement.querySelector(".card__delete");
-
-  cardTitle.textContent = card.name;
-  cardImage.src = card.link;
-
-  //Toggle likeButton//
-  cardLike.addEventListener("click", () => { cardLike.classList.toggle("card__like_active") });
-
-  //Remove card//
-  cardDelete.addEventListener("click", () => { cardElement.classList.add("card_remove") });
-
-  //card zoom//
-  cardImage.addEventListener("click", () => {
-    placeModalCaption.textContent = cardTitle.textContent;
-    PlaceModalImage.src = cardImage.src;
-    openPopup(placeModal);
-  });
-
-  return cardElement
-}
-
+//edit profile form//
 editButton.addEventListener("click", popupProfile);
 
 //save profile//
@@ -122,8 +110,8 @@ editModal.addEventListener("click", (evt) => {
 //popup place form//
 addButton.addEventListener("click", () => {
   openPopup(addModal);
-  const cardImage = document.querySelector(".card__image")
-  const cardTitle = document.querySelector(".card__caption")
+  const cardImage = document.querySelector(".card__image");
+  const cardTitle = document.querySelector(".card__caption");
   inputTitle.value = cardTitle.textContent;
   inputImage.value = cardImage.src;
 });
@@ -144,11 +132,3 @@ placeModal.addEventListener("click", (evt) => {
      closePopup(placeModal);
     }
 });
-
-//cards//
-initialCards.forEach(card => {
-const cardElement = cloneCard(card)
-elements.prepend(cardElement)
-});
-
-
