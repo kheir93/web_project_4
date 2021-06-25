@@ -1,25 +1,5 @@
-const placeModal = document.querySelector(".place-modal");
-const PlaceModalImage = document.querySelector(".place-modal__image");
-const placeModalCaption = document.querySelector(".place-modal__caption");
-
-//display modal popup//
-function openPopup(open) {
-  open.classList.add("popup_open");
-  document.addEventListener("keydown", (evt) => escapeKeyHandler(evt, open));
-};
-
-//closing modal popup//
-function closePopup(close) {
-  close.classList.remove("popup_open");
-  document.removeEventListener("keydown", escapeKeyHandler);
-};
-
-//Escape key function//
-function escapeKeyHandler(evt, target) {
-  if (evt.key === "Escape") {
-    closePopup(target);
-  }
-};
+import * as obj from "./const.js"
+import * as functions from "./functions.js"
 
 class Card {
   constructor(data, cardTemplate) {
@@ -27,8 +7,11 @@ class Card {
     this._link = data.link,
 
     this._cardTemplate = cardTemplate
+
+    this._popupModal = functions.openPopup
   };
 
+  //Template structure//
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardTemplate)
@@ -37,34 +20,36 @@ class Card {
       return cardElement
   };
 
+  //Listeners//
   _setEventListeners() {
-    this._handlecardLike();
-    this._handlecardDelete();
-    this._handlecardImage();
+    this._handleCardLike();
+    this._handleCardDelete();
+    this._handleCardImage();
   };
 
    //Toggle likeButton//
-   _handlecardLike() {
+   _handleCardLike() {
     const cardLike = this._cardTemplate.querySelector(".card__like")
     cardLike.addEventListener("click", () => { cardLike.classList.toggle("card__like_active") });
    };
 
    //Remove card//
-   _handlecardDelete() {
+   _handleCardDelete() {
     const cardDelete = this._cardTemplate.querySelector(".card__delete");
-    cardDelete.addEventListener("click", () => { this._cardTemplate.classList.add("card_remove") });
+    cardDelete.addEventListener("click", () => {this._cardTemplate.remove() })
    };
 
-   //card zoom//
-   _handlecardImage() {
+   //Card zoom//
+   _handleCardImage() {
     const cardImage = this._cardTemplate.querySelector(".card__image");
     cardImage.addEventListener("click", () => {
-      placeModalCaption.textContent = this._name;
-      PlaceModalImage.src = this._link;
-      openPopup(placeModal);
+      obj.placeModalCaption.textContent = this._name;
+      obj.PlaceModalImage.src = this._link;
+      this._popupModal(obj.placeModal)
    });
   };
 
+  //Display template//
   generateCard() {
     this._cardTemplate = this._getTemplate();
     this._setEventListeners();
