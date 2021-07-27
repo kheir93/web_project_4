@@ -3,6 +3,7 @@ import initialCards from "./initialcards.js";
 import Card from "./Card.js";
 import * as obj from "./const.js"
 import * as functions from "./functions.js"
+import "../pages/index.css";
 
 //Default conf for formvalidator load//
 const defaultFormConfig = {
