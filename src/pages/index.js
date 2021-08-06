@@ -1,18 +1,24 @@
 import FormValidator from "../components/FormValidator.js";
-import initialCards from "../components//initialcards.js";
+import initialCards from "../Utils/initialcards.js";
 import Card from "../components//Card.js";
-import * as functions from "../utils//functions.js";
+import PopupWithForm from "../components/Popup-with-form.js";
+import PopupWithImage from "../components/Popup-with-image.js";
 import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
 import "./index.css";
 import {
-  defaultCard,
   editModal,
   editButton,
   addModal,
-  placeModal,
-  elements,
-  addButton
+  addButton,
+  infoName,
+  infoAbout,
+  inputImage,
+  inputTitle,
+  inputJob,
+  inputName
 } from "../utils/constants.js";
+
 
 //Default conf for formvalidator load//
 const defaultFormConfig = {
@@ -34,77 +40,68 @@ const addModalValidator = new FormValidator(defaultFormConfig, addModal);
 editModalValidator.enableValidation();
 addModalValidator.enableValidation();
 
-//Add place submit function//
-const handleAddSubmit = (evt) => {
-  evt.preventDefault();
-  functions.closePopup(addModal);
-  new Card({
-    name: inputTitle.value,
-    link: inputImage.value
-  }, defaultCard);
-}
+const profileInfo = new UserInfo ({name: infoName, about: infoAbout})
 
-//Card fulfillment//
-/*const renderCard = (data, elements) => {
-  const cardData = new Card(data, "#cardTemplate");
-  elements.prepend(cardData.generateCard());
-}*/
-
-//Card populating//
-/*initialCards.forEach((data) => {
-  renderCard(data, elements)
-});*/
-
-const renderCard = new Section({ data: initialCards, renderer: (item) => {
-    const cardData = new Card(item, "#cardTemplate");
-    const cardElement = cardData.generateCard();
-    elements.prepend(cardElement);
+//Edit modal user data//
+const profileForm = new PopupWithForm({
+  handleFormSubmit: ({ name, about }) => {
+    profileInfo.setUserInfo({ name, about });
   }
-});
+}, ".edit-modal")
 
-renderCard.renderItems();
-
-
-//Card populating//
-/*initialCards.forEach(data => {
-  elements(data, defaultCard)
-});*/
+profileForm.setEventListeners();
 
 //Edit profile form//
-editButton.addEventListener("click", functions.popupProfile);
+editButton.addEventListener("click", () =>{
+  profileForm.open();
+  inputName.value = profileInfo.getUserInfo().profileName;
+  inputJob.value = profileInfo.getUserInfo().profileAbout
+})
 
-//Save profile//
-editModal.addEventListener("submit", functions.handleFormSubmit);
+//Card zoom//
+const popupPlace = new PopupWithImage(".place-modal");
+popupPlace.setEventListeners();
 
-//Close profile form//
-editModal.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("popup__close-button") || (evt.target.classList.contains("edit-modal"))) {
-      functions.closePopup(editModal);
+//Card rendering//
+const renderCard = new Section({
+  renderer: (data) => {
+    const cardData = new Card({data,
+      handleCardImage: () => {
+      popupPlace.open(data)
+      }
+    },"#cardTemplate")
+  renderCard.addItem(cardData.generateCard())
+  }
+}, ".elements");
+
+//Populating with defaultCards//
+renderCard.renderItems(initialCards);
+
+const newCard = (data) => {
+  const addNewCard = new Card({
+    data: data,
+    handleCardImage: () => {
+      popupPlace.open(data);
     }
-});
+  },"#cardTemplate");
+  return addNewCard;
+}
+const placeSubmitHandler = new PopupWithForm({
+  handleFormSubmit: (data) =>{
+    const generatedCard = newCard(data)
+    renderCard.addItem(generatedCard.generateCard())
+  }
+}, ".add-modal")
+
+
+placeSubmitHandler.setEventListeners();
 
 //Popup place form//
 addButton.addEventListener("click", () => {
-  functions.openPopup(addModal);
+  placeSubmitHandler.open()
   const cardImage = document.querySelector(".card__image");
   const cardTitle = document.querySelector(".card__caption");
   inputTitle.value = cardTitle.textContent;
   inputImage.value = cardImage.src;
-});
 
-//Close place form//
-addModal.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("popup__close-button") || (evt.target.classList.contains("add-modal"))) {
-    functions.closePopup(addModal);
-  }
-});
-
-//Save place//
-addModal.addEventListener("submit", handleAddSubmit);
-
-//Close place image//
-placeModal.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("place-modal__close") || (evt.target.classList.contains("place-modal"))) {
-    functions.closePopup(placeModal);
-    }
-});
+})

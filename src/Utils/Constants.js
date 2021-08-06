@@ -17,6 +17,7 @@ export const infoName = document.querySelector(".profile__name");
 export const infoAbout = document.querySelector(".profile__about");
 export const addButton = document.querySelector(".profile__add-button");
 
+export const popupMark = document.querySelector(".popup")
 export const defaultCard = document.querySelector(".card");
 export const cardImage = document.querySelector(".card__image");
 export const cardTitle = document.querySelector(".card__caption");

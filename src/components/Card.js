@@ -1,30 +1,31 @@
-import * as obj from "../utils/constants.js"
-import * as functions from "../utils/functions.js"
 
-class Card {
-  constructor(data, cardTemplate) {
-    this._name = data.name,
+export default class Card {
+  constructor({data, handleCardImage}, cardTemplate) {
     this._link = data.link,
-
+    this._title = data.title,
+    this._handleCardImage = handleCardImage,
     this._cardTemplate = cardTemplate
-
-    this._popupModal = functions.openPopup
   };
 
   //Template structure//
   _getTemplate() {
-    const cardElement = document
+    this._cardElement = document
       .querySelector(this._cardTemplate)
       .content.querySelector(".card")
       .cloneNode(true)
-      return cardElement
+    return this._cardElement
   };
 
   //Listeners//
   _setEventListeners() {
+     //Card zoom handling//
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardImage()
+    });
+    //Card like handling//
     this._handleCardLike();
+    //Card delete handling//
     this._handleCardDelete();
-    this._handleCardImage();
   };
 
    //Toggle likeButton//
@@ -36,27 +37,21 @@ class Card {
    //Remove card//
    _handleCardDelete() {
     const cardDelete = this._cardTemplate.querySelector(".card__delete");
-    cardDelete.addEventListener("click", () => {this._cardTemplate.remove() })
+    cardDelete.addEventListener("click", () => {this._cardTemplate.classList.add("card_remove")})
    };
-
-   //Card zoom//
-   _handleCardImage() {
-    const cardImage = this._cardTemplate.querySelector(".card__image");
-    cardImage.addEventListener("click", () => {
-      obj.placeModalCaption.textContent = this._name;
-      obj.PlaceModalImage.src = this._link;
-      this._popupModal(obj.placeModal)
-   });
-  };
 
   //Display template//
   generateCard() {
     this._cardTemplate = this._getTemplate();
+    this._cardImage = this._cardTemplate.querySelector(".card__image");
+    this._cardTitle = this._cardTemplate.querySelector(".card__caption");
+    this._cardTitle.textContent = this._title;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._title;
     this._setEventListeners();
-    this._cardTemplate.querySelector(".card__image").src = this._link;
-    this._cardTemplate.querySelector(".card__caption").textContent = this._name;
+
     return this._cardTemplate;
   };
 };
 
-export default Card;
+
