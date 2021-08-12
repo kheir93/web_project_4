@@ -28,13 +28,13 @@ export default class Card {
     this._handleCardDelete();
   };
 
-   //Toggle likeButton//
+  //Toggle likeButton//
    _handleCardLike() {
     const cardLike = this._cardTemplate.querySelector(".card__like")
     cardLike.addEventListener("click", () => { cardLike.classList.toggle("card__like_active") });
    };
 
-   //Remove card//
+  //Remove card//
    _handleCardDelete() {
     const cardDelete = this._cardTemplate.querySelector(".card__delete");
     cardDelete.addEventListener("click", () => {this._cardTemplate.classList.add("card_remove")})

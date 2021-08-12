@@ -1,6 +1,6 @@
 import FormValidator from "../components/FormValidator.js";
 import initialCards from "../Utils/initialcards.js";
-import Card from "../components//Card.js";
+import Card from "../components/Card.js";
 import PopupWithForm from "../components/Popup-with-form.js";
 import PopupWithImage from "../components/Popup-with-image.js";
 import Section from "../components/Section.js";
@@ -18,7 +18,6 @@ import {
   inputJob,
   inputName
 } from "../utils/constants.js";
-
 
 //Default conf for formvalidator load//
 const defaultFormConfig = {
@@ -54,15 +53,16 @@ profileForm.setEventListeners();
 //Edit profile form//
 editButton.addEventListener("click", () =>{
   profileForm.open();
-  inputName.value = profileInfo.getUserInfo().profileName;
-  inputJob.value = profileInfo.getUserInfo().profileAbout
+  const fieldSync = profileInfo.getUserInfo()
+  inputName.value = fieldSync.profileName;
+  inputJob.value = fieldSync.profileAbout
 })
 
 //Card zoom//
 const popupPlace = new PopupWithImage(".place-modal");
 popupPlace.setEventListeners();
 
-//Card rendering//
+//Card template//
 const renderCard = new Section({
   renderer: (data) => {
     const cardData = new Card({data,
@@ -71,28 +71,20 @@ const renderCard = new Section({
       }
     },"#cardTemplate")
   renderCard.addItem(cardData.generateCard())
+    return cardData;
   }
 }, ".elements");
 
 //Populating with defaultCards//
 renderCard.renderItems(initialCards);
 
-const newCard = (data) => {
-  const addNewCard = new Card({
-    data: data,
-    handleCardImage: () => {
-      popupPlace.open(data);
-    }
-  },"#cardTemplate");
-  return addNewCard;
-}
 const placeSubmitHandler = new PopupWithForm({
   handleFormSubmit: (data) =>{
-    const generatedCard = newCard(data)
-    renderCard.addItem(generatedCard.generateCard())
+    const generatedCard = new Card( {data: data}, "#cardTemplate");
+    renderCard.addItem(generatedCard.generateCard());
+
   }
 }, ".add-modal")
-
 
 placeSubmitHandler.setEventListeners();
 
@@ -103,5 +95,4 @@ addButton.addEventListener("click", () => {
   const cardTitle = document.querySelector(".card__caption");
   inputTitle.value = cardTitle.textContent;
   inputImage.value = cardImage.src;
-
 })
