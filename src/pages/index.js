@@ -39,6 +39,7 @@ const addModalValidator = new FormValidator(defaultFormConfig, addModal);
 editModalValidator.enableValidation();
 addModalValidator.enableValidation();
 
+//Profile match//
 const profileInfo = new UserInfo ({name: infoName, about: infoAbout})
 
 //Edit modal user data//
@@ -62,27 +63,31 @@ editButton.addEventListener("click", () =>{
 const popupPlace = new PopupWithImage(".place-modal");
 popupPlace.setEventListeners();
 
-//Card template//
-const renderCard = new Section({
+//Card template info//
+const cardData = (data) => {
+  const newCard = new Card({
+  data: data,
+  handleCardImage: () => {
+    popupPlace.open(data)
+   }
+  }, "#cardTemplate");
+  return newCard;
+};
+
+const renderCard = new Section ({
   renderer: (data) => {
-    const cardData = new Card({data,
-      handleCardImage: () => {
-      popupPlace.open(data)
-      }
-    },"#cardTemplate")
-  renderCard.addItem(cardData.generateCard())
-    return cardData;
+    const card = cardData(data).generateCard()
+    renderCard.addItem(card)
   }
-}, ".elements");
+}, ".elements")
 
 //Populating with defaultCards//
 renderCard.renderItems(initialCards);
 
+//New card//
 const placeSubmitHandler = new PopupWithForm({
   handleFormSubmit: (data) =>{
-    const generatedCard = new Card( {data: data}, "#cardTemplate");
-    renderCard.addItem(generatedCard.generateCard());
-
+    renderCard.addItem(cardData(data).generateCard());
   }
 }, ".add-modal")
 
