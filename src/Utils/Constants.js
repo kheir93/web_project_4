@@ -2,9 +2,11 @@
 export const PlaceModalImage = document.querySelector(".place-modal__image");
 export const placeModalCaption = document.querySelector(".place-modal__caption");
 
+export const avatarModal = document.querySelector(".avatar-modal")
 export const editModal = document.querySelector(".edit-modal");
 export const addModal = document.querySelector(".add-modal");
 
+export const inputAvatar = document.querySelector(".form__input_avatar");
 export const inputName = document.querySelector(".form__input_name");
 export const inputJob = document.querySelector(".form__input_job");
 export const inputImage = document.querySelector(".form__input_image");
@@ -12,7 +14,9 @@ export const inputTitle = document.querySelector(".form__input_title");
 
 export const placeModal = document.querySelector(".place-modal");
 
+export const avatarButton = document.querySelector(".profile__avatar-button");
 export const editButton = document.querySelector(".profile__edit-button");
+export const infoAvatar = document.querySelector(".profile__avatar");
 export const infoName = document.querySelector(".profile__name");
 export const infoAbout = document.querySelector(".profile__about");
 export const addButton = document.querySelector(".profile__add-button");

@@ -12,6 +12,7 @@
 @import url(../blocks/form/__save/_inactive/form__save_inactive.css);
 @import url(../blocks/form/__input-error/_active/form__input-error_active.css);
 @import url(../blocks/form/__input/_type/form__input_type_error.css);
+@import url(../blocks/avatar-modal/avatar-modal.css);
 @import url(../blocks/edit-modal/edit-modal.css);
 @import url(../blocks/add-modal/add-modal.css);
 @import url(../blocks/place-modal/place-modal.css);

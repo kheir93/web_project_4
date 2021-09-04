@@ -1,8 +1,15 @@
 .profile__avatar {
-  border-radius: 120px;
-  width: 120px;
+  z-index: 0;
+  outline: none;
+  width: 100%;
   object-fit: contain;
-  grid-area: avatar;
+  border-radius: 100%;
+}
+
+@media (max-width: 768px) {
+  .profile__avatar {
+    max-width: 50%;
+  }
 }
 
 @media (max-width: 320px) {

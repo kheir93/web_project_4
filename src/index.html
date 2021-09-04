@@ -22,7 +22,9 @@
 
     <main>
       <section class="profile">
-        <img class="profile__avatar" src="<%= require('./images/JYCousteau.jpg')%>" alt="Comander Cousteau">
+        <button class="profile__avatar-button">
+          <img class="profile__avatar" src="<%= require('./images/JYCousteau.jpg')%>" alt="Comander Cousteau">
+        </button>
           <h1 class="profile__name" id="infoName">Jacques Cousteau</h1>
           <button class="profile__edit-button" type="button"></button>
           <p class="profile__about" id="infoAbout">Explorer</p>
@@ -76,6 +78,12 @@
         <button class="form__save" type="submit">Create</button>
       </form>
     </div>
+    <!--delete modal-->
+    <div class="delete-modal popup">
+      <button class="popup__close-button" type="button"></button>
+      <h2 class="form__title">Are you sure ?</h2>
+      <button class="form__save" type="submit">Yes</button>
+    </div>
     <!--zoom-place modal-->
     <div class="place-modal popup">
       <figure class="place-modal__figure">
@@ -83,6 +91,18 @@
         <img class="place-modal__image" type="image" name="place" src="#" alt="#">
         <h2 class="place-modal__caption"></h2>
       </figure>
+    </div>
+    <!--avatar-place modal-->
+    <div class="avatar-modal popup">
+      <form class="form">
+        <button class="popup__close-button" type="button"></button>
+        <h2 class="form__title">Change profile picture</h2>
+        <label class="form__field">
+          <input type="url" class="form__input form__input_avatar" id="inputAvatar" placeholder="Avatar image link" value="" name="avatar" required>
+          <span class="form__input-error inputAvatar-error">Please enter a web address.</span>
+        </label>
+        <button class="form__save" type="submit">Save</button>
+      </form>
     </div>
   </div>
   <!--<script type="module" src="pages/index.js"></script>-->
