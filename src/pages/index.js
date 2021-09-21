@@ -61,24 +61,28 @@ const profileInfo = new UserInfo({name: infoName, about: infoAbout, avatar: info
 const avatarInfo = new UserInfo({avatar: infoAvatar})
 
 
+
 //Edit modal user data//
 const profileForm = new PopupWithForm({
-  handleFormSubmit: ({name, about}) => {
+  handleFormSubmit: ({name, about, avatar}) => {
     api.setUserInfo({
       name: infoName.textContent = inputName.value,
-      about: infoAbout.textContent = inputJob.value
+      about: infoAbout.textContent = inputJob.value,
+      avatar: avatarForm
     })
       .then((res) => {
-        profileInfo.setUserInfo({name, about})
+      return profileInfo.setUserInfo({name, about, avatar})
       })
   }
 }, ".edit-modal")
 
 const avatarForm = new PopupWithForm({
-  handleFormSubmit: (avatar) => {
-    api.setUserAvatar({ avatar: infoAvatar.src = inputAvatar.value})
+  handleFormSubmit: () => {
+    api.setUserAvatar({
+      avatar: infoAvatar.src = inputAvatar.value
+    })
       .then((res) => {
-        avatarInfo.setUserAvatar(avatar)
+        infoAvatar.src
       })
   }
 }, ".avatar-modal")
@@ -89,11 +93,17 @@ profileForm.setEventListeners();
 
 //Avatar form//
 avatarButton.addEventListener("click", () => {
-  avatarForm.open();
-  const fieldSync = api.getUserInfo().src
-  inputAvatar.value = fieldSync
-  console.log(fieldSync);
-  console.log(fieldSync.src)
+  avatarForm.open()
+  api.getUserInfo({
+    avatar: inputAvatar.value = infoAvatar.src,
+    name: inputName.value = infoName.src,
+    about: inputJob.value = infoAbout.src
+  })
+
+
+  //inputAvatar.value = fieldSync
+  //console.log(fieldSync);
+  //console.log(fieldSync)
 })
 
 //Edit profile form//
@@ -102,6 +112,7 @@ editButton.addEventListener("click", () =>{
   const fieldSync = profileInfo.getUserInfo();
   inputName.value = fieldSync.profileName;
   inputJob.value = fieldSync.profileAbout;
+  inputAvatar.value = fieldSync.profileAvatar
 })
 
 //Card zoom//

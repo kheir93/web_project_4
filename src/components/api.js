@@ -1,8 +1,7 @@
 export default class Api {
-  constructor({ baseUrl, headers, avatar, name, about}) {
+  constructor({ baseUrl, headers, name, about}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._avatar = avatar;
     this._name = name;
     this._about = about
   }
@@ -16,36 +15,45 @@ export default class Api {
         about
       )
     })
-      .then(res => res.json())
-      .then((result) => console.log(result))
-      .catch((err) => {
-        return console.log(err)
-    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return Promise.reject('Error!' + res.statusText)
+        }
+      })
   }
 
   getUserInfo() {
     return fetch(this._baseUrl + '/users/me', {
-      method: 'GET',
       headers: this._headers
     })
-      .then(function (response) {
-        return response;});
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return Promise.reject('Error!' + res.status)
+        }
+      })
   }
 
-  setUserAvatar(avatar) {
+  setUserAvatar({avatar}) {
     return fetch(this._baseUrl + '/users/me/avatar', {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify(avatar)
+      body: JSON.stringify({
+        avatar
+      })
     })
       .then((res) => {
         if (res.ok) {
           return res.json()
             .then((result) => console.log(result))
-        }
+        } else {
         return Promise.reject(`Error: ${res.status}`);
-        })
-      }
+         }
+      })
+    }
 
 
   getInitialCards() {
