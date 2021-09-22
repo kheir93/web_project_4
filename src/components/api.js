@@ -6,6 +6,10 @@ export default class Api {
     this._about = about
   }
 
+  getAppInfo() {
+    return Promise.all([this.getUserInfo()]
+    )}
+
   setUserInfo(name, about) {
     return fetch(this._baseUrl + '/users/me/', {
       method: "PATCH",
@@ -18,6 +22,7 @@ export default class Api {
       .then((res) => {
         if (res.ok) {
           return res.json()
+            .then((result) => console.log(result))
         } else {
           return Promise.reject('Error!' + res.statusText)
         }

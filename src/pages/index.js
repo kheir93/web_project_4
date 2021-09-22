@@ -60,19 +60,17 @@ avatarModalValidator.enableValidation();
 const profileInfo = new UserInfo({name: infoName, about: infoAbout, avatar: infoAvatar})
 const avatarInfo = new UserInfo({avatar: infoAvatar})
 
-
-
 //Edit modal user data//
 const profileForm = new PopupWithForm({
-  handleFormSubmit: ({name, about, avatar}) => {
+  handleFormSubmit: () => {
     api.setUserInfo({
       name: infoName.textContent = inputName.value,
       about: infoAbout.textContent = inputJob.value,
       avatar: avatarForm
     })
       .then((res) => {
-      return profileInfo.setUserInfo({name, about, avatar})
-      })
+
+    })
   }
 }, ".edit-modal")
 
@@ -81,8 +79,8 @@ const avatarForm = new PopupWithForm({
     api.setUserAvatar({
       avatar: infoAvatar.src = inputAvatar.value
     })
-      .then((res) => {
-        infoAvatar.src
+      .then(() => {
+
       })
   }
 }, ".avatar-modal")
@@ -96,11 +94,9 @@ avatarButton.addEventListener("click", () => {
   avatarForm.open()
   api.getUserInfo({
     avatar: inputAvatar.value = infoAvatar.src,
-    name: inputName.value = infoName.src,
-    about: inputJob.value = infoAbout.src
+    name: inputName.value = infoName.textContent,
+    about: inputJob.value = infoAbout.textContent
   })
-
-
   //inputAvatar.value = fieldSync
   //console.log(fieldSync);
   //console.log(fieldSync)
@@ -157,3 +153,10 @@ addButton.addEventListener("click", () => {
   inputTitle.value = cardTitle.textContent;
   inputImage.value = cardImage.src;
 })
+
+
+api.getAppInfo()
+  .then(([data]) => {
+    profileInfo.setUserInfo(data.name, data.about)
+    infoAvatar.src = data.avatar
+  })
