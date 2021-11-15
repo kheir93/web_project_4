@@ -16,5 +16,6 @@
 @import url(../blocks/edit-modal/edit-modal.css);
 @import url(../blocks/add-modal/add-modal.css);
 @import url(../blocks/place-modal/place-modal.css);
+@import url(../blocks/delete-modal/delete-modal.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_open/popup_open.css);

@@ -1,10 +1,12 @@
 
 export default class Card {
-  constructor({data, handleCardImage}, cardTemplate) {
+  constructor({ data, handleCardImage, cardDelete}, cardTemplate) {
     this._link = data.link,
     this._title = data.title,
     this._handleCardImage = handleCardImage,
+    this._cardDelete = cardDelete,
     this._cardTemplate = cardTemplate
+    this._card = this._cardElement;
   };
 
   //Template structure//
@@ -25,7 +27,7 @@ export default class Card {
     //Card like handling//
     this._handleCardLike();
     //Card delete handling//
-    this._handleCardDelete();
+    this.handleCardDelete();
   };
 
   //Toggle likeButton//
@@ -35,9 +37,12 @@ export default class Card {
    };
 
   //Remove card//
-   _handleCardDelete() {
-    const cardDelete = this._cardTemplate.querySelector(".card__delete");
-    cardDelete.addEventListener("click", () => {this._cardTemplate.classList.add("card_remove")})
+   handleCardDelete() {
+    //this._card.remove('.card');
+    this._cardDelete = this._cardTemplate.querySelector(".card__delete");
+    //const deletePopup = document.querySelector(".delete-modal");
+    //cardDelete.addEventListener("click", deletePopup);
+    return this._cardDelete.addEventListener("submit", () => {this._cardTemplate.classList.add("card_remove")})
    };
 
   //Display template//

@@ -5,6 +5,7 @@ export const placeModalCaption = document.querySelector(".place-modal__caption")
 export const avatarModal = document.querySelector(".avatar-modal")
 export const editModal = document.querySelector(".edit-modal");
 export const addModal = document.querySelector(".add-modal");
+export const deleteModal = document.querySelector(".delete-modal");
 
 export const inputAvatar = document.querySelector(".form__input_avatar");
 export const inputName = document.querySelector(".form__input_name");
@@ -25,5 +26,6 @@ export const popupMark = document.querySelector(".popup")
 export const defaultCard = document.querySelector(".card");
 export const cardImage = document.querySelector(".card__image");
 export const cardTitle = document.querySelector(".card__caption");
+export const cardDelete = document.querySelector(".card__delete");
 
 export const elements = document.querySelector(".elements");

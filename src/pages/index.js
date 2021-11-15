@@ -15,6 +15,8 @@ import {
   addModal,
   addButton,
   avatarModal,
+  cardDelete,
+  deleteModal,
   infoName,
   infoAbout,
   inputAvatar,
@@ -60,16 +62,22 @@ avatarModalValidator.enableValidation();
 const profileInfo = new UserInfo({name: infoName, about: infoAbout, avatar: infoAvatar})
 const avatarInfo = new UserInfo({avatar: infoAvatar})
 
+function handleLoading(isLoading, modal, textDisplay) {
+  if (isLoading) {
+    modal.querySelector(".form__save").textContent = textDisplay;
+  } else {
+    modal.querySelector(".form__save").textContent = textDisplay;
+  }
+}
+
 //Edit modal user data//
 const profileForm = new PopupWithForm({
   handleFormSubmit: () => {
+    handleLoading(true, editModal, "bollocks!!!")
     api.setUserInfo({
       name: infoName.textContent = inputName.value,
       about: infoAbout.textContent = inputJob.value,
       avatar: avatarForm
-    })
-      .then((res) => {
-
     })
   }
 }, ".edit-modal")
@@ -121,7 +129,9 @@ const cardData = (data) => {
   data: data,
   handleCardImage: () => {
     popupPlace.open(data)
-   }
+    cardRemoveModal.open()
+    newCard.handleCardDelete().addEventListener("click", cardRemoveModal)
+   },
   }, "#cardTemplate");
   return newCard;
 };
@@ -143,6 +153,19 @@ const placeSubmitHandler = new PopupWithForm({
   }
 }, ".add-modal")
 
+/*const cardRemove = new PopupWithForm({
+  handleFormSubmit: () => {
+    const deleteModal = document.querySelector(".delete-modal")
+    deleteModal.open()
+  }
+}, ".elements")*/
+
+
+//const cardRemoveModal = new PopupWithForm("delete-modal");
+
+//cardRemoveModal.setEventListeners();
+//cardRemove.setEventListeners();
+
 placeSubmitHandler.setEventListeners();
 
 //Popup place form//
@@ -159,4 +182,5 @@ api.getAppInfo()
   .then(([data]) => {
     profileInfo.setUserInfo(data.name, data.about)
     infoAvatar.src = data.avatar
+
   })
