@@ -12,6 +12,7 @@ export const inputName = document.querySelector(".form__input_name");
 export const inputJob = document.querySelector(".form__input_job");
 export const inputImage = document.querySelector(".form__input_image");
 export const inputTitle = document.querySelector(".form__input_title");
+export const formSubmit = document.querySelector(".form__save");
 
 export const placeModal = document.querySelector(".place-modal");
 
@@ -23,6 +24,8 @@ export const infoAbout = document.querySelector(".profile__about");
 export const addButton = document.querySelector(".profile__add-button");
 
 export const popupMark = document.querySelector(".popup")
+
+export const cardTemplate = document.querySelector(".cardTemplate");
 export const defaultCard = document.querySelector(".card");
 export const cardImage = document.querySelector(".card__image");
 export const cardTitle = document.querySelector(".card__caption");

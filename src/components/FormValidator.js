@@ -1,7 +1,7 @@
 class FormValidator {
 
   constructor(config, formElement) {
-    this._formSelector = config.formSelector
+    this._formSelector = config.formSelector,
     this._popupSelector = config.popupSelector,
     this._formSubmit = config.formSubmit,
     this._inputSelector = config.inputSelector,

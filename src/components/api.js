@@ -1,18 +1,29 @@
 export default class Api {
-  constructor({ baseUrl, headers, name, about}) {
+  constructor({ baseUrl, headers}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._name = name;
-    this._about = about
   }
 
   getAppInfo() {
-    return Promise.all([this.getUserInfo()]
-    )}
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]
+    )
+  }
+
+  getUserInfo() {
+    return fetch(this._baseUrl + '/users/me', {
+      headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Error: ${res.status}`)
+      })
+  }
 
   setUserInfo(name, about) {
     return fetch(this._baseUrl + '/users/me/', {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(
         name,
@@ -23,26 +34,12 @@ export default class Api {
         if (res.ok) {
           return res.json()
             .then((result) => console.log(result))
-        } else {
-          return Promise.reject('Error!' + res.statusText)
         }
+        return Promise.reject(`Error: ${res.status}`)
       })
   }
 
-  getUserInfo() {
-    return fetch(this._baseUrl + '/users/me', {
-      headers: this._headers
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          return Promise.reject('Error!' + res.status)
-        }
-      })
-  }
-
-  setUserAvatar({avatar}) {
+  setUserAvatar({ avatar }) {
     return fetch(this._baseUrl + '/users/me/avatar', {
       method: 'PATCH',
       headers: this._headers,
@@ -54,31 +51,109 @@ export default class Api {
         if (res.ok) {
           return res.json()
             .then((result) => console.log(result))
-        } else {
-        return Promise.reject(`Error: ${res.status}`);
-         }
+        }
+        return Promise.reject(`Error: ${res.status}`)
       })
-    }
-
+  }
 
   getInitialCards() {
-    return fetch("https://around.nomoreparties.co/v1/group-13/cards", {
-      headers: {
-        authorization: "4b9bb316-6c12-461f-86a3-76e6af7325ba"
-      }
+    return fetch(this._baseUrl + '/cards', {
+      headers: this._headers
     })
       .then(res => {
         if (res.ok) {
-          return res.json();
-        }
+          return res.json()
 
+      }
         // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err); // log the error to the console
+        return Promise.reject(`Error: ${res.status}`)
       })
   }
+
+  newCard({ title, url }) {
+    return fetch(this._baseUrl + '/cards', {
+      headers: this._headers,
+      method: 'POST',
+      body: JSON.stringify({
+        name: title,
+        link: url
+      })
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Error: ${res.status}`)
+
+      })
+  }
+
+  removeCard(cardId) {
+    return fetch(this._baseUrl + '/cards/' + cardId, {
+      headers: this._headers,
+      method: 'DELETE'
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Error: ${res.status}`)
+      })
+  }
+
+  likesManagement(cardId) {
+    function method(isliked, disliked) {
+    if (isliked) {
+      const put = method = 'PUT'
+    } else if(disliked) {
+      const del = method = 'DELETE'
+    }
+  }
+    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
+      method: method(isliked, disliked),
+      headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+
+        }
+        return Promise.reject(`Error: ${res.status}`)
+      })
+  }
+
+  addLike(cardId) {
+    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+
+        }
+        return Promise.reject(`Error: ${res.status}`)
+      })
+  }
+
+
+  removeLike(cardId) {
+    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+
+        }
+        return Promise.reject(`Error: ${res.status}`)
+      })
+  }
+
+
+
+
 
 _renderError(err) {
   /*error.textContent = err
@@ -95,9 +170,8 @@ _renderResult(text) {
 _renderLoading(isLoading) {
     if (isLoading) {
       console.log(isLoading)
-    } else {
-      console.log("err")
     }
+    console.log("err")
   // other methods for working with the API
   }
 }

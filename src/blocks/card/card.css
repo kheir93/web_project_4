@@ -1,9 +1,9 @@
+@import url(./__delete/card__delete.css);
 @import url(./__image/card__image.css);
 @import url(./__caption/card__caption.css);
 @import url(./__like/card__like.css);
-@import url(./__delete/card__delete.css);
-@import url(./__like/_active/card__like_active.css);
-
+@import url(./__like-count/card__like-count.css);
+@import url(./__like-icon/__like-icon.css);
 
 .card {
   position: relative;

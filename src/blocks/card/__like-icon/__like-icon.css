@@ -1,10 +1,4 @@
-.card__like {
-  display: grid;
-  position: relative;
-  grid-template-rows: auto, auto;
-  grid-template-columns:  auto ;
-}
-/*.card__like {
+.card__like-icon {
   margin-left: 0;
   margin-top: 30px;
   width: 21px;
@@ -17,11 +11,11 @@
   cursor: pointer;
 }
 
-.card__like:hover {
+.card__like-icon:hover {
   transition-duration: 0.5s;
   opacity: 0.4;
 }
 
-.card__like:focus {
+.card__like-icon:focus {
   outline: none;
-}*/
+}

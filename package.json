@@ -1,13 +1,15 @@
 {
   "name": "web_project_4",
   "version": "1.0.0",
-  "description": "## Sprint 4 ##",
+  "description": "## Sprint 9 ##",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "serve": "webpack serve",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "start": "node",
+    "watch": "nodemon --ext *"
   },
   "repository": {
     "type": "git",

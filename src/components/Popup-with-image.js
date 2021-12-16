@@ -7,9 +7,9 @@ class PopupWithImage extends Popup {
     this._title = this._popupElement.querySelector(".place-modal__caption");
   }
 
-  open({link, title}) {
+  open({link, name}) {
     this._link.src = link;
-    this._title.textContent = title;
+    this._title.textContent = name;
     super.open()
   }
 }

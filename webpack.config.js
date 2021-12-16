@@ -20,8 +20,9 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, "./dist"),
     compress: true,
-    port: 8080,
-    open: true
+    port: 8082,
+    open: 'chrome',
+    stats: 'errors-only' //only output when errors happen
   },
   module: {
     rules: [
@@ -60,6 +61,6 @@ module.exports = {
       template: "./src/index.html" // path to our index.html file
     }),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin() // connect the plugin for merging CSS files
+    new MiniCssExtractPlugin(), // connect the plugin for merging CSS files
   ]
 }
