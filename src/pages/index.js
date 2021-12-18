@@ -199,9 +199,23 @@ api.getAppInfo()
                 newCard.likesCount(result.likes.length) || like.add("card__like-icon_active")
               })
               .catch(err => console.log(err))
-            }
-            return newCard
+          }
         }
+        /*isLiked: (cardId) => {
+          const like = newCard.cardLike.classList
+
+            api.removeLike(cardId)
+              .then((result) => {
+               return newCard.likesCount(result.likes.length) || newCard.hideLikes()
+              })
+              .catch(err => console.log(err))
+
+            api.addLike(cardId)
+              .then((result) => {
+                return newCard.likesCount(result.likes.length) || newCard.showLikes()
+              })
+              .catch(err => console.log(err))
+          }*/
       }, "#cardTemplate", profileId)
       renderCard.addItem(newCard.generateCard())
     };
