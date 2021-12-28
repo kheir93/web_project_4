@@ -63,7 +63,6 @@ export default class Api {
       .then(res => {
         if (res.ok) {
           return res.json()
-
       }
         // if the server returns an error, reject the promise
         return Promise.reject(`Error: ${res.status}`)
@@ -84,7 +83,6 @@ export default class Api {
           return res.json()
         }
         return Promise.reject(`Error: ${res.status}`)
-
       })
   }
 

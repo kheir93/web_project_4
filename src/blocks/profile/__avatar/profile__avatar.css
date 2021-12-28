@@ -1,9 +1,10 @@
 .profile__avatar {
   z-index: 0;
   outline: none;
-  width: 100%;
-  object-fit: contain;
+  max-height: 130px;
+  max-width: 130px;
   border-radius: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 768px) {

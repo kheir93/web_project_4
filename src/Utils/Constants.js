@@ -1,3 +1,13 @@
+//default conf for formvalidator load//
+export const defaultFormConfig = {
+  popupSelector: ".popup",
+  formSelector: ".form",
+  formSubmit: ".form__save",
+  inputSelector: ".form__input",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+  formSubmitInactive: "form__save_inactive"
+};
 
 export const PlaceModalImage = document.querySelector(".place-modal__image");
 export const placeModalCaption = document.querySelector(".place-modal__caption");
@@ -32,3 +42,5 @@ export const cardTitle = document.querySelector(".card__caption");
 export const cardDelete = document.querySelector(".card__delete");
 
 export const elements = document.querySelector(".elements");
+
+

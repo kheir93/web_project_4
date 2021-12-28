@@ -7,6 +7,7 @@ import PopupWithImage from "../components/Popup-with-image.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import {
+  defaultFormConfig,
   editModal,
   avatarButton,
   editButton,
@@ -21,7 +22,7 @@ import {
   inputImage,
   inputTitle,
   inputJob,
-  inputName,
+  inputName
 } from "../utils/constants.js";
 
 //ATHENTICATION//
@@ -32,17 +33,6 @@ const api = new Api({
     "Content-Type": "application/json"
   }
 });
-
-//default conf for formvalidator load//
-const defaultFormConfig = {
-  popupSelector: ".popup",
-  formSelector : ".form",
-  formSubmit: ".form__save",
-  inputSelector: ".form__input",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active",
-  formSubmitInactive: "form__save_inactive"
-};
 
 //avatar form field validation handling//
 const avatarModalValidator = new FormValidator(defaultFormConfig, avatarModal);
@@ -56,9 +46,6 @@ editModalValidator.enableValidation();
 addModalValidator.enableValidation();
 avatarModalValidator.enableValidation();
 
-//profile match//
-const profileInfo = new UserInfo({name: infoName, about: infoAbout, avatar: infoAvatar})
-
 //loading state//
 function loading(isLoading, popupModal, submitButtonText) {
   if (isLoading) {
@@ -67,33 +54,42 @@ function loading(isLoading, popupModal, submitButtonText) {
     popupModal.querySelector(".form__save").textContent = submitButtonText;
 }
 
+//profile match//
+const userInfo = new UserInfo({ name: infoName, about: infoAbout, avatar: infoAvatar })
+
 //edit modal user data//
 const profileForm = new PopupWithForm({
   handleFormSubmit: () => {
-    loading(true, editModal, "Saving...")
-
+    loading(true, editModal, "Saving...");
+    const field = profileForm.getInputValues();
       api.setUserInfo({
-        name: infoName.textContent = inputName.value,
-        about: infoAbout.textContent = inputJob.value,
+        name: field.name,
+        about: field.about,
+        avatar: userInfo.avatar
     })
       .then(() => {
-        loading(false, editModal, "loaded!!!")
+        userInfo.setUserInfo(inputName.value, inputJob.value, inputAvatar.value);
+        loading(false, editModal, "loaded!!!");
+        profileForm.close()
     })
-
+      .catch(err => console.log(err));
   }
 }, ".edit-modal")
 
 //popup avatar data//
 const avatarForm = new PopupWithForm({
   handleFormSubmit: () => {
+    const field = avatarForm.getInputValues()
     loading(true, avatarModal, "Saving...")
       api.setUserAvatar({
-        avatar: infoAvatar.src = inputAvatar.value
+        avatar: field.avatar
     })
     .then(() => {
-     return loading(false, avatarModal, "loaded!!!")
-
+      infoAvatar.src = field.avatar
+      loading(false, avatarModal, "loaded!!!")
+      avatarForm.close()
     })
+    .catch(err => console.log(err));
   }
 }, ".avatar-modal")
 
@@ -108,18 +104,18 @@ profileForm.setEventListeners();
 
 //avatar form//
 avatarButton.addEventListener("click", () => {
-  avatarForm.open()
+  avatarForm.open();
   loading(true, avatarModal, "Save")
-  inputAvatar.value = infoAvatar.src;
 })
 
 //edit profile form//
 editButton.addEventListener("click", () =>{
   profileForm.open()
   loading(true, editModal, "Save")
-  const fieldSync = profileInfo.getUserInfo();
+  const fieldSync = userInfo.getUserInfo();
   inputName.value = fieldSync.profileName;
   inputJob.value = fieldSync.profileAbout;
+  inputAvatar.value = fieldSync.profileAvatar;
 })
 
 //card zoom//
@@ -131,26 +127,25 @@ popupPlace.setEventListeners();
 api.getAppInfo()
   .then(([profile, cards]) => {
     const profileId = profile._id;
-    profileInfo.setUserInfo(profile.name, profile.about)
+    userInfo.setUserInfo(profile.name, profile.about)
     infoAvatar.src = profile.avatar
-
     const renderCard = new Section({
       data: cards,
-      renderer: cardData
+      renderer: createCard
     }, ".elements")
 
     renderCard.renderItems()
 
     const cardSubmitHandler = new PopupWithForm({
       handleFormSubmit: (data) => {
-        loading(true, addModal, 'Saving...')
+        loading(true, addModal, 'Saving...');
         api.newCard(data)
           .then((res) => {
-            cardData(res);
-            loading(false, addModal, 'yep')
-            cardSubmitHandler.formClose()
-            console.log(res)
+            createCard(res),
+            loading(false, addModal, 'yep'),
+            cardSubmitHandler.close()
           })
+          .catch(err => console.log(err));
       }
     }, ".add-modal")
 
@@ -165,57 +160,42 @@ api.getAppInfo()
       inputImage.value = cardImage.src
     })
 
-    function cardData(data) {
+    function createCard(data) {
       const newCard = new Card({
         data,
         handleCardImage: () => {
           popupPlace.open(data);
         },
         cardDelete: (cardId) => {
-          deleteCardModal.open()
-          loading(true, deleteModal, "Yes")
+          deleteCardModal.open();
+          loading(true, deleteModal, "Yes");
           deleteCardModal.submitHandler(() => {
-            loading(true, deleteModal, "Saving...")
+            loading(true, deleteModal, "Saving...");
             api.removeCard(cardId)
               .then(() => {
-                newCard.removeCard()
-                loading(false, deleteModal, "yes!!!")
-                deleteCardModal.formClose()
+                newCard.removeCard();
+                loading(false, deleteModal, "yes!!!");
+                deleteCardModal.close()
               })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
           })
         },
-        isLiked: (cardId) => {
-          const like = newCard.cardLike.classList
-          if (like.contains("card__like-icon_active")) {
+
+        likeOwner: (cardId) => {
+          if (newCard.isLiked()) {
             api.removeLike(cardId)
               .then((result) => {
-                newCard.likesCount(result.likes.length) || /*newCard.showLikes() ||*/ like.remove("card__like-icon_active")
+                newCard.likesCount(result.likes.length) || newCard.removeLike()
               })
               .catch(err => console.log(err))
           } else {
             api.addLike(cardId)
               .then((result) => {
-                newCard.likesCount(result.likes.length) || like.add("card__like-icon_active")
+                newCard.likesCount(result.likes.length) || newCard.addLike()
               })
               .catch(err => console.log(err))
           }
         }
-        /*isLiked: (cardId) => {
-          const like = newCard.cardLike.classList
-
-            api.removeLike(cardId)
-              .then((result) => {
-               return newCard.likesCount(result.likes.length) || newCard.hideLikes()
-              })
-              .catch(err => console.log(err))
-
-            api.addLike(cardId)
-              .then((result) => {
-                return newCard.likesCount(result.likes.length) || newCard.showLikes()
-              })
-              .catch(err => console.log(err))
-          }*/
       }, "#cardTemplate", profileId)
       renderCard.addItem(newCard.generateCard())
     };

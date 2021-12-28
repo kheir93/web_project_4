@@ -52,7 +52,9 @@
     <!--profile modal-->
     <div class="edit-modal popup">
       <form class="form">
+        <div class="popup__close-button-container">
           <button class="popup__close-button" type="button"></button>
+        </div>
           <h2 class="form__title">Edit profile</h2>
         <label class="form__field">
           <input type="text" class="form__input form__input_name" id="inputName" placeholder="name" name="name" value="Jacques Cousteau" required minlength="2" maxlength="40">
@@ -68,10 +70,12 @@
     <!--add-place modal-->
     <div class="add-modal popup">
       <form class="form">
-        <button class="popup__close-button" type="button"></button>
+        <div class="popup__close-button-container">
+          <button class="popup__close-button" type="reset"></button>
+        </div>
         <h2 class="form__title">New place</h2>
         <label class="form__field">
-          <input type="text" class="form__input form__input_title" id="inputTitle" placeholder="Title" value="" name="title" required minlength="1" maxlength="30">
+          <input type="text" class="form__input form__input_title" id="inputTitle" placeholder="Title" value="" name="title" required minlength="2" maxlength="30">
           <span class="form__input-error inputTitle-error">Please fill out this field.</span>
         </label>
         <label class="form__field">
@@ -84,7 +88,9 @@
     <!--delete modal-->
     <div class="delete-modal popup">
       <form class="form">
-        <button class="popup__close-button" type="button"></button>
+        <div class="popup__close-button-container">
+          <button class="popup__close-button" type="reset"></button>
+        </div>
         <h2 class="form__title">Are you sure ?</h2>
         <button class="form__save" type="submit">Yes</button>
       </form>
@@ -92,7 +98,7 @@
     <!--zoom-place modal-->
     <div class="place-modal popup">
       <figure class="place-modal__figure">
-        <button class="place-modal__close" type="button" ></button>
+        <button class="popup__close-button"></button>
         <img class="place-modal__image" type="image" name="place" src="#" alt="#">
         <h2 class="place-modal__caption"></h2>
       </figure>
@@ -100,7 +106,9 @@
     <!--avatar-place modal-->
     <div class="avatar-modal popup">
       <form class="form">
-        <button class="popup__close-button" type="button"></button>
+        <div class="popup__close-button-container">
+          <button class="popup__close-button" type="reset"></button>
+        </div>
         <h2 class="form__title">Change profile picture</h2>
         <label class="form__field">
           <input type="url" class="form__input form__input_avatar" id="inputAvatar" placeholder="Avatar image link" value="" name="avatar" required>
