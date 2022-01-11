@@ -9,14 +9,10 @@ export default class UserInfo {
     return { profileName: this._name.textContent, profileAbout: this._about.textContent, profileAvatar: this._avatar.src};
   }
 
-  getUserAvatar() {
-    return {profileAvatar: this._avatar.src}
-  }
-
   setUserInfo(name, about, avatar) {
     this._name.textContent = name;
     this._about.textContent = about;
-    this._avatar.src = avatar
+    this.setUserAvatar({avatar})
   };
 
   setUserAvatar({avatar}) {

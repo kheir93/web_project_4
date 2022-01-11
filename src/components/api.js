@@ -5,12 +5,13 @@ export default class Api {
   }
 
   _checkResponse(res) {
-      if (res.ok) {
-        return res.json()
-      } else {
-        return Promise.reject(`Error ${res.status}`);
-      }
+    if (res.ok) {
+      return res.json()
+      /*.then((result) => console.log(result))*/
+    } else {
+      return Promise.reject(`Error ${res.status}`);
     }
+  }
 
   getAppInfo() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()])
@@ -69,21 +70,6 @@ export default class Api {
     return fetch(this._baseUrl + '/cards/' + cardId, {
       headers: this._headers,
       method: 'DELETE'
-    })
-      .then(this._checkResponse)
-  }
-
-  likesManagement(cardId) {
-    function method(isliked, disliked) {
-    if (isliked) {
-      const put = method = 'PUT'
-    } else if(disliked) {
-      const del = method = 'DELETE'
-    }
-  }
-    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
-      method: method(isliked, disliked),
-      headers: this._headers
     })
       .then(this._checkResponse)
   }

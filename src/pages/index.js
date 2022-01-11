@@ -18,9 +18,6 @@ import {
   deleteModal,
   infoName,
   infoAbout,
-  inputAvatar,
-  inputImage,
-  inputTitle,
   inputJob,
   inputName
 } from "../utils/constants.js";
@@ -46,29 +43,20 @@ editModalValidator.enableValidation();
 addModalValidator.enableValidation();
 avatarModalValidator.enableValidation();
 
-//loading state//
-function loading(isLoading, popupModal, submitButtonText) {
-  if (isLoading) {
-    popupModal.querySelector(".form__save").textContent = submitButtonText;
-  }
-    popupModal.querySelector(".form__save").textContent = submitButtonText;
-}
-
 //profile match//
 const userInfo = new UserInfo({ name: infoName, about: infoAbout, avatar: infoAvatar })
 
 //edit modal user data//
 const profileForm = new PopupWithForm({
   handleFormSubmit: (profile) => {
-    loading(true, editModal, "Saving...");
-    const field = profileForm.getInputValues();
+      profileForm.loading(true, editModal, "Saving...")
       api.setUserInfo({
         name: profile.name,
         about: profile.about,
     })
       .then((res) => {
-        userInfo.setUserInfo(field.name, field.about, res.avatar);
-        loading(false, editModal, "loaded!!!");
+        userInfo.setUserInfo(res.name, res.about, res.avatar);
+        profileForm.loading(false, editModal, "loaded!!!");
         profileForm.close()
     })
       .catch(err => console.log(err));
@@ -78,13 +66,13 @@ const profileForm = new PopupWithForm({
 //popup avatar data//
 const avatarForm = new PopupWithForm({
   handleFormSubmit: (profile) => {
-    loading(true, avatarModal, "Saving...")
+    avatarForm.loading(true, avatarModal, "Saving...")
       api.setUserAvatar({
         avatar: profile.avatar
       })
-        .then((result) => {
-          userInfo.setUserAvatar(result)
-      loading(false, avatarModal, "loaded!!!");
+        .then((res) => {
+          userInfo.setUserAvatar(res)
+      avatarForm.loading(false, avatarModal, "loaded!!!");
       avatarForm.close()
     })
     .catch(err => console.log(err));
@@ -103,13 +91,13 @@ profileForm.setEventListeners();
 //avatar form//
 avatarButton.addEventListener("click", () => {
   avatarForm.open();
-  loading(true, avatarModal, "Save")
+  avatarForm.loading(true, avatarModal, "Save")
 })
 
 //edit profile form//
 editButton.addEventListener("click", () =>{
   profileForm.open()
-  loading(true, editModal, "Save")
+  profileForm.loading(true, editModal, "Save")
   const fieldSync = userInfo.getUserInfo();
   inputName.value = fieldSync.profileName;
   inputJob.value = fieldSync.profileAbout;
@@ -133,24 +121,24 @@ api.getAppInfo()
 
     renderCard.renderItems();
 
-    const cardSubmitHandler = new PopupWithForm({
+    const cardPopup = new PopupWithForm({
       handleFormSubmit: (data) => {
-        loading(true, addModal, 'Saving...');
+        cardPopup.loading(true, addModal, 'Saving...');
         api.newCard(data)
           .then((res) => {
             createCard(res),
-            loading(false, addModal, 'yep'),
-            cardSubmitHandler.close()
+            cardPopup.loading(false, addModal, 'Saved'),
+            cardPopup.close()
           })
           .catch(err => console.log(err));
       }
     }, ".add-modal")
 
-    cardSubmitHandler.setEventListeners();
+    cardPopup.setEventListeners();
 
     addButton.addEventListener("click", () => {
-      cardSubmitHandler.open();
-      loading(true, addModal, "Create");
+      cardPopup.open();
+      cardPopup.loading(true, addModal, "Create");
     })
 
     function createCard(data) {
@@ -161,13 +149,13 @@ api.getAppInfo()
         },
         cardDelete: (cardId) => {
           deleteCardModal.open();
-          loading(true, deleteModal, "Yes");
+          deleteCardModal.loading(true, deleteModal, "Yes");
           deleteCardModal.submitHandler(() => {
-            loading(true, deleteModal, "Saving...");
+            deleteCardModal.loading(true, deleteModal, "Deleting...");
             api.removeCard(cardId)
               .then(() => {
                 newCard.removeCard();
-                loading(false, deleteModal, "yes!!!");
+                deleteCardModal.loading(false, deleteModal, "Deleted");
                 deleteCardModal.close()
               })
             .catch(err => console.log(err))
@@ -177,14 +165,16 @@ api.getAppInfo()
         likeOwner: (cardId) => {
           if (newCard.isLiked()) {
             api.removeLike(cardId)
-              .then((result) => {
-                newCard.likesCount(result.likes.length) || newCard.removeLike()
+              .then((res) => {
+                newCard.likesCount(res.likes.length);
+                newCard.removeLike()
               })
               .catch(err => console.log(err))
           } else {
             api.addLike(cardId)
-              .then((result) => {
-                newCard.likesCount(result.likes.length) || newCard.addLike()
+              .then((res) => {
+                newCard.likesCount(res.likes.length);
+                newCard.addLike()
               })
               .catch(err => console.log(err))
           }
