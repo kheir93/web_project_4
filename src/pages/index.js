@@ -59,16 +59,15 @@ const userInfo = new UserInfo({ name: infoName, about: infoAbout, avatar: infoAv
 
 //edit modal user data//
 const profileForm = new PopupWithForm({
-  handleFormSubmit: () => {
+  handleFormSubmit: (profile) => {
     loading(true, editModal, "Saving...");
     const field = profileForm.getInputValues();
       api.setUserInfo({
-        name: field.name,
-        about: field.about,
-        avatar: userInfo.avatar
+        name: profile.name,
+        about: profile.about,
     })
-      .then(() => {
-        userInfo.setUserInfo(inputName.value, inputJob.value, inputAvatar.value);
+      .then((res) => {
+        userInfo.setUserInfo(field.name, field.about, res.avatar);
         loading(false, editModal, "loaded!!!");
         profileForm.close()
     })
@@ -78,15 +77,14 @@ const profileForm = new PopupWithForm({
 
 //popup avatar data//
 const avatarForm = new PopupWithForm({
-  handleFormSubmit: () => {
-    const field = avatarForm.getInputValues()
+  handleFormSubmit: (profile) => {
     loading(true, avatarModal, "Saving...")
       api.setUserAvatar({
-        avatar: field.avatar
-    })
-    .then(() => {
-      infoAvatar.src = field.avatar
-      loading(false, avatarModal, "loaded!!!")
+        avatar: profile.avatar
+      })
+        .then((result) => {
+          userInfo.setUserAvatar(result)
+      loading(false, avatarModal, "loaded!!!");
       avatarForm.close()
     })
     .catch(err => console.log(err));
@@ -115,7 +113,6 @@ editButton.addEventListener("click", () =>{
   const fieldSync = userInfo.getUserInfo();
   inputName.value = fieldSync.profileName;
   inputJob.value = fieldSync.profileAbout;
-  inputAvatar.value = fieldSync.profileAvatar;
 })
 
 //card zoom//
@@ -127,14 +124,14 @@ popupPlace.setEventListeners();
 api.getAppInfo()
   .then(([profile, cards]) => {
     const profileId = profile._id;
-    userInfo.setUserInfo(profile.name, profile.about)
-    infoAvatar.src = profile.avatar
+    userInfo.setUserInfo(profile.name, profile.about);
+    userInfo.setUserAvatar(profile);
     const renderCard = new Section({
       data: cards,
       renderer: createCard
     }, ".elements")
 
-    renderCard.renderItems()
+    renderCard.renderItems();
 
     const cardSubmitHandler = new PopupWithForm({
       handleFormSubmit: (data) => {
@@ -153,11 +150,7 @@ api.getAppInfo()
 
     addButton.addEventListener("click", () => {
       cardSubmitHandler.open();
-      loading(true, addModal, "Create")
-      const cardImage = document.querySelector(".card__image");
-      const cardTitle = document.querySelector(".card__caption");
-      inputTitle.value = cardTitle.textContent;
-      inputImage.value = cardImage.src
+      loading(true, addModal, "Create");
     })
 
     function createCard(data) {
@@ -196,7 +189,7 @@ api.getAppInfo()
               .catch(err => console.log(err))
           }
         }
-      }, "#cardTemplate", profileId)
+      }, "#cardTemplate", profileId);
       renderCard.addItem(newCard.generateCard())
     };
   })

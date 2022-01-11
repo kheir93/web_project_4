@@ -36,47 +36,40 @@ class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
-      this._buttonElement.classList.add(this._defaultFormConfig.formSubmitInactive);
-      this._buttonElement.disabled = true;
+      this.disableButton()
     } else {
-      this._buttonElement.classList.remove(this._defaultFormConfig.formSubmitInactive);
-      this._buttonElement.disabled = false;
+      this.enableButton()
     }
   };
-
-  _setEventListeners() {
-    this._inputList.forEach(inputElement => {
-      this._formElement.addEventListener("reset", () => {
-        this.disableButton(this._buttonElement);
-        this._inputList.forEach((inputElement) => {
-          this._hideInputError(inputElement)
-        })
-      });
-      this._formElement.addEventListener("input", () => {
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState(this._inputList, this._buttonElement);
-      });
-    })
-  }
-
-  enableButton() {
-    this._buttonElement.classList.remove(this._defaultFormConfig.formSubmitInactive);
-    this._buttonElement.disabled = true;
-  }
 
   disableButton() {
     this._buttonElement.classList.add(this._defaultFormConfig.formSubmitInactive);
     this._buttonElement.disabled = true;
   }
 
-  resetValidation() {
-    this._toggleButtonState(); //<== controlling the submit button ==
-
-      this._inputList.forEach((inputElement) => {
-        this._hideInputError(inputElement) //<== clearing errors ==
-      });
+  enableButton() {
+    this._buttonElement.classList.remove(this._defaultFormConfig.formSubmitInactive);
+    this._buttonElement.disabled = false;
   }
 
+  _setEventListeners() {
+    this.resetValidation();
+    this._inputList.forEach(inputElement => {
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
+    })
+  }
+
+  resetValidation() {
+    this._formElement.addEventListener("reset", () => {
+        this._toggleButtonState();
+        this._inputList.forEach((inputElement) => {
+          this._hideInputError(inputElement)
+        })
+      });
+  }
 
   enableValidation() {
     this._formElement.addEventListener("submit", function (evt) {

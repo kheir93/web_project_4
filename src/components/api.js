@@ -4,21 +4,23 @@ export default class Api {
     this._headers = headers;
   }
 
+  _checkResponse(res) {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(`Error ${res.status}`);
+      }
+    }
+
   getAppInfo() {
-    return Promise.all([this.getUserInfo(), this.getInitialCards()]
-    )
+    return Promise.all([this.getUserInfo(), this.getInitialCards()])
   }
 
   getUserInfo() {
     return fetch(this._baseUrl + '/users/me', {
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   setUserInfo(name, about) {
@@ -30,13 +32,7 @@ export default class Api {
         about
       )
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-            .then((result) => console.log(result))
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   setUserAvatar({ avatar }) {
@@ -47,26 +43,14 @@ export default class Api {
         avatar
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-            .then((result) => console.log(result))
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   getInitialCards() {
     return fetch(this._baseUrl + '/cards', {
       headers: this._headers
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-      }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   newCard({ title, url }) {
@@ -78,12 +62,7 @@ export default class Api {
         link: url
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   removeCard(cardId) {
@@ -91,12 +70,7 @@ export default class Api {
       headers: this._headers,
       method: 'DELETE'
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   likesManagement(cardId) {
@@ -111,13 +85,7 @@ export default class Api {
       method: method(isliked, disliked),
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
 
   addLike(cardId) {
@@ -125,51 +93,14 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
+      .then(this._checkResponse)
   }
-
 
   removeLike(cardId) {
     return fetch(this._baseUrl + '/cards/likes/' + cardId, {
       method: 'DELETE',
       headers: this._headers
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
-  }
-
-
-
-
-
-_renderError(err) {
-  /*error.textContent = err
-  result.textContent = ""*/
-  return console.log(err)
-}
-
-_renderResult(text) {
-    /*result.textContent = text;
-    error.textContent = ""*/
-    console.log(text)
-  }
-
-_renderLoading(isLoading) {
-    if (isLoading) {
-      console.log(isLoading)
-    }
-    console.log("err")
-  // other methods for working with the API
+      .then(this._checkResponse)
   }
 }
