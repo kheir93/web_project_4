@@ -49,14 +49,14 @@ const userInfo = new UserInfo({ name: infoName, about: infoAbout, avatar: infoAv
 //edit modal user data//
 const profileForm = new PopupWithForm({
   handleFormSubmit: (profile) => {
-      profileForm.loading(true, editModal, "Saving...")
+      profileForm.loading(true)
       api.setUserInfo({
         name: profile.name,
         about: profile.about,
     })
       .then((res) => {
         userInfo.setUserInfo(res.name, res.about, res.avatar);
-        profileForm.loading(false, editModal, "loaded!!!");
+        profileForm.loading(false,"loaded!!!");
         profileForm.close()
     })
       .catch(err => console.log(err));
@@ -66,13 +66,13 @@ const profileForm = new PopupWithForm({
 //popup avatar data//
 const avatarForm = new PopupWithForm({
   handleFormSubmit: (profile) => {
-    avatarForm.loading(true, avatarModal, "Saving...")
+    avatarForm.loading(true)
       api.setUserAvatar({
         avatar: profile.avatar
       })
         .then((res) => {
           userInfo.setUserAvatar(res)
-      avatarForm.loading(false, avatarModal, "loaded!!!");
+      avatarForm.loading(false, "loaded!!!");
       avatarForm.close()
     })
     .catch(err => console.log(err));
@@ -91,13 +91,13 @@ profileForm.setEventListeners();
 //avatar form//
 avatarButton.addEventListener("click", () => {
   avatarForm.open();
-  avatarForm.loading(true, avatarModal, "Save")
+  avatarForm.loading(false)
 })
 
 //edit profile form//
 editButton.addEventListener("click", () =>{
   profileForm.open()
-  profileForm.loading(true, editModal, "Save")
+  profileForm.loading(false)
   const fieldSync = userInfo.getUserInfo();
   inputName.value = fieldSync.profileName;
   inputJob.value = fieldSync.profileAbout;
@@ -123,11 +123,11 @@ api.getAppInfo()
 
     const cardPopup = new PopupWithForm({
       handleFormSubmit: (data) => {
-        cardPopup.loading(true, addModal, 'Saving...');
+        cardPopup.loading(true);
         api.newCard(data)
           .then((res) => {
             createCard(res),
-            cardPopup.loading(false, addModal, 'Saved'),
+            cardPopup.loading(false, "Saved"),
             cardPopup.close()
           })
           .catch(err => console.log(err));
@@ -138,7 +138,7 @@ api.getAppInfo()
 
     addButton.addEventListener("click", () => {
       cardPopup.open();
-      cardPopup.loading(true, addModal, "Create");
+      cardPopup.loading(false);
     })
 
     function createCard(data) {
@@ -149,13 +149,13 @@ api.getAppInfo()
         },
         cardDelete: (cardId) => {
           deleteCardModal.open();
-          deleteCardModal.loading(true, deleteModal, "Yes");
+
           deleteCardModal.submitHandler(() => {
-            deleteCardModal.loading(true, deleteModal, "Deleting...");
+            deleteCardModal.deleting(true);
             api.removeCard(cardId)
               .then(() => {
                 newCard.removeCard();
-                deleteCardModal.loading(false, deleteModal, "Deleted");
+                deleteCardModal.deleting(false);
                 deleteCardModal.close()
               })
             .catch(err => console.log(err))

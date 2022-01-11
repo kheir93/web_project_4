@@ -13,3 +13,6 @@
 --*Functions
 --*DOM
 3. More & More Java Script implementation & More headaches !!!
+4. Java Script Applets
+5. JSON
+6. JS Node implementation and configuration
