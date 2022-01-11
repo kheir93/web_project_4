@@ -11,21 +11,13 @@ export default class PopupWithForm extends Popup {
   };
 
   //loading state//
-loading(isLoading, submitButtonText="Saving...") {
-  if (isLoading) {
-    this._submitButton.textContent = submitButtonText;
-  } else {
-    this._submitButton.textContent = this._initialText;
+  loading(isLoading, submitButtonText="Saving...") {
+    if (isLoading) {
+      this._submitButton.textContent = submitButtonText;
+    } else {
+      this._submitButton.textContent = this._initialText;
+    }
   }
-}
-
-deleting(isDeleting, submitButtonText="Deleting...") {
-  if (isDeleting) {
-    this._submitButton.textContent = submitButtonText;
-  } else {
-    this._submitButton.textContent = this._initialText;
-  }
-}
 
   getInputValues() {
     this._inputValues = {};

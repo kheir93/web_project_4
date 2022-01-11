@@ -56,7 +56,7 @@ const profileForm = new PopupWithForm({
     })
       .then((res) => {
         userInfo.setUserInfo(res.name, res.about, res.avatar);
-        profileForm.loading(false,"loaded!!!");
+        profileForm.loading(false, "loaded!!!");
         profileForm.close()
     })
       .catch(err => console.log(err));
@@ -151,11 +151,11 @@ api.getAppInfo()
           deleteCardModal.open();
 
           deleteCardModal.submitHandler(() => {
-            deleteCardModal.deleting(true);
+            deleteCardModal.loading(true, "Deleting...");
             api.removeCard(cardId)
               .then(() => {
                 newCard.removeCard();
-                deleteCardModal.deleting(false);
+                deleteCardModal.loading(false);
                 deleteCardModal.close()
               })
             .catch(err => console.log(err))
